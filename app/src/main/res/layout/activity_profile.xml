@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+
+    <!-- SCROLL AREA -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomMenu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
+
+
+
+                <LinearLayout
+                    android:id="@+id/profileRoot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- TOP BAR -->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:background="#4CAF50">
+
+                            <TextView
+                                android:id="@+id/profileTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="My Profile"
+                                android:textSize="26sp"
+                                android:textColor="#FFFFFF"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="20dp"/>
+
+                            <ImageView
+                                android:id="@+id/btnGear"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="20dp"
+                                android:src="@drawable/settings"/>
+
+
+                        </RelativeLayout>
+
+                        <!-- SETTINGS MENU (СКРЫТ ПО УМОЛЧАНИЮ) -->
+                        <LinearLayout
+                            android:id="@+id/settingsContainer"
+                            android:layout_width="220dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            android:background="@drawable/bg_settings_popup"
+                            android:elevation="8dp"
+                            android:padding="10dp"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginTop="10dp">
+
+                            <Button
+                                android:id="@+id/btnLanguages"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:text="Languages"
+                                android:textColor="#FFFFFF"
+                                android:backgroundTint="#4CAF50"
+                                android:layout_marginBottom="8dp"/>
+
+                            <Button
+                                android:id="@+id/btnPrivacy"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:text="Privacy"
+                                android:textColor="#FFFFFF"
+                                android:backgroundTint="#4CAF50"
+                                android:layout_marginBottom="8dp"/>
+
+                            <Button
+                                android:id="@+id/btnAbout"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:text="About PetCorner"
+                                android:textColor="#FFFFFF"
+                                android:backgroundTint="#4CAF50"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            <!-- PROFILE PHOTO -->
+            <FrameLayout
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    app:cardCornerRadius="65dp"
+                    app:cardElevation="0dp"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/profileImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_launcher_foreground" />
+                </androidx.cardview.widget.CardView>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="bottom|end"
+                    android:background="#AAFFFFFF"
+                    android:padding="5dp"
+                    android:src="@android:drawable/ic_menu_edit"/>
+            </FrameLayout>
+            <!-- USERNAME -->
+            <TextView
+                android:id="@+id/tvUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"/>
+
+            <!-- ACCOUNT -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/bg_account_card"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+
+                <TextView
+                    android:text="Account Information"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+                <Button
+                    android:id="@+id/btnAdminPanel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Admin Panel"
+                    android:visibility="gone"/>
+
+
+                <LinearLayout
+                    android:id="@+id/btnPersonalInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_personal_button">
+
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_person"
+                        app:tint="#FFFFFF"/>
+
+                    <TextView
+                        android:text="Personal information"
+                        android:textColor="#FFFFFF"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_marginStart="12dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- ANNOUNCEMENTS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/bg_account_card"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:text="Announcements"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+                <LinearLayout
+                    android:id="@+id/btnFavoriteAnnouncements"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_personal_button">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_heart_outline"
+                        app:tint="#FFFFFF"/>
+
+                    <TextView
+                        android:text="Favorite announcements"
+                        android:textColor="#FFFFFF"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_marginStart="12dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnMyAnnouncements"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_personal_button">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_services"
+                        app:tint="#FFFFFF"/>
+
+                    <TextView
+                        android:text="My announcements"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnAnnouncementsMap"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_personal_button">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_map_pin"
+                        app:tint="#FFFFFF"/>
+
+                    <TextView
+                        android:text="Announcements map"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"/>
+                </LinearLayout>
+<!--track location,hanelem animasta-->
+
+
+            </LinearLayout>
+
+            <!-- NOTES -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/bg_account_card"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:text="Reminders"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"/>
+
+                <LinearLayout
+                    android:id="@+id/btnMyNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_personal_button">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_notes"
+                        app:tint="#FFFFFF"/>
+
+                    <TextView
+                        android:text="My reminders"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/circle_button"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"/>
+                </LinearLayout>
+
+                <!-- SWITCH NOTIFICATIONS hanelem animasta -->
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- BOTTOM MENU -->
+    <LinearLayout
+        android:id="@+id/bottomMenu"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="#4CAF50"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- SERVICES -->
+        <LinearLayout
+            android:id="@+id/btnServices"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/circle_button"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_services"
+                app:tint="#FFFFFF"/>
+
+            <TextView
+                android:text="Announcements"
+                android:textColor="#FFFFFF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"/>
+        </LinearLayout>
+
+        <!-- MY PROFILE (NEW CENTER BUTTON) -->
+        <LinearLayout
+            android:id="@+id/btnProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/circle_button"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_main"
+                app:tint="#FFFFFF"/>
+
+            <TextView
+                android:text="My Profile"
+                android:textColor="#FFFFFF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"/>
+        </LinearLayout>
+
+        <!-- FORUM -->
+        <LinearLayout
+            android:id="@+id/btnForum"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/circle_button"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_forum"
+                app:tint="#FFFFFF"/>
+
+            <TextView
+                android:text="Forum"
+                android:textColor="#FFFFFF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- DROPDOWN MENU (ВАЖНО: ВНЕ bottomMenu) -->
+    <LinearLayout
+        android:id="@+id/dropdownMenu"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:background="@drawable/bg_settings_popup"
+        android:elevation="12dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomMenu"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp">
+
+        <Button
+            android:id="@+id/btnServicesOption"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="Services"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnShops"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="Shops"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnVeterinarians"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="Veterinarians"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50"/>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

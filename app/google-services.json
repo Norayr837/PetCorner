@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "107403315605",
+    "project_id": "petcorner-2f7b7",
+    "storage_bucket": "petcorner-2f7b7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107403315605:android:559c258a0a844ebd520e9c",
+        "android_client_info": {
+          "package_name": "norayr.martirosyan.petcorner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5mH9sAsUhm3zi-P6dgO-9gCK1f490nlA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

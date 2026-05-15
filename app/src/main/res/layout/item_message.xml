@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:background="#FFFFFF"
+    android:layout_marginBottom="8dp">
+
+    <!-- PROFILE -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/avatarContainer"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:cardCornerRadius="22.5dp"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_foreground"/>
+    </androidx.cardview.widget.CardView>
+
+    <!-- USERNAME -->
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/avatarContainer"
+        android:layout_marginStart="10dp"
+        android:text="Username"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#000"/>
+
+    <!-- TIME -->
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/tvUsername"
+        android:layout_marginStart="6dp"
+        android:text="14:30"
+        android:textSize="12sp"
+        android:textColor="#777"/>
+
+    <!-- MESSAGE -->
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvUsername"
+        android:layout_toEndOf="@id/avatarContainer"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:text="Message text"
+        android:textSize="15sp"
+        android:textColor="#000"/>
+
+    <!-- ⚙️ ШЕСТЕРЁНКА (ПРАВЫЙ ВЕРХНИЙ УГОЛ) -->
+    <ImageView
+        android:id="@+id/btnMenu"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/settings"
+        android:tint="#000000"
+        android:padding="4dp"
+        android:visibility="gone"/>
+
+    <!-- ACTION MENU -->
+    <LinearLayout
+        android:id="@+id/actionContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/btnMenu"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:textSize="12sp"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF"/>
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:textSize="12sp"
+            android:layout_marginStart="6dp"
+            android:backgroundTint="#E53935"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+</RelativeLayout>

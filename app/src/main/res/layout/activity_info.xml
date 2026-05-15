@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About PetCorner"
+            android:textSize="36sp"
+            android:textColor="#1B5E20"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PetCorner is an app created for pet lovers. Here you can choose your favorite pet and explore different animals whether you love dogs, cats, fish or parrots — this app helps you discover and enjoy your favorite pets."
+            android:textSize="20sp"
+            android:textColor="#1B5E20"
+            android:layout_marginBottom="25dp"/>
+
+        <ImageView
+            android:layout_width="242dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/info" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PetCorner's goal is to unite people from all over the world who have pets!"
+            android:textSize="20sp"
+            android:textColor="#1B5E20"
+            android:layout_marginBottom="30dp"/>
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:text="Go to Login"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#1B5E20"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+</ScrollView>

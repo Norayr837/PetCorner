@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- основная подушечка (увеличена) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12,10
+        c-2.8,0 -4.8,2.2 -4.8,4.5
+        c0,2.5 1.9,4.2 4.8,4.2
+        c2.9,0 4.8,-1.7 4.8,-4.2
+        c0,-2.3 -2,-4.5 -4.8,-4.5z"/>
+
+    <!-- левая верхняя -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M6.8,8
+        c-1,0 -1.8,0.9 -1.8,1.9
+        c0,1 0.8,1.8 1.8,1.8
+        c1,0 1.8,-0.8 1.8,-1.8
+        c0,-1 -0.8,-1.9 -1.8,-1.9z"/>
+
+    <!-- центральная левая -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M10,6.5
+        c-1,0 -1.8,0.9 -1.8,1.9
+        c0,1 0.8,1.8 1.8,1.8
+        c1,0 1.8,-0.8 1.8,-1.8
+        c0,-1 -0.8,-1.9 -1.8,-1.9z"/>
+
+    <!-- центральная правая -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M14,6.5
+        c-1,0 -1.8,0.9 -1.8,1.9
+        c0,1 0.8,1.8 1.8,1.8
+        c1,0 1.8,-0.8 1.8,-1.8
+        c0,-1 -0.8,-1.9 -1.8,-1.9z"/>
+
+    <!-- правая верхняя -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M17.2,8
+        c-1,0 -1.8,0.9 -1.8,1.9
+        c0,1 0.8,1.8 1.8,1.8
+        c1,0 1.8,-0.8 1.8,-1.8
+        c0,-1 -0.8,-1.9 -1.8,-1.9z"/>
+
+</vector>

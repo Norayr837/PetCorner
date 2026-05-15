@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Base.Theme.PetCorner" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- основной цвет приложения -->
+        <item name="colorPrimary">#4CAF50</item>
+        <item name="colorSecondary">#4CAF50</item>
+        <item name="colorTertiary">#4CAF50</item>
+
+        <!-- 👇 статус-бар (то что у тебя фиолетовое) -->
+        <item name="android:statusBarColor">#4CAF50</item>
+
+        <!-- чтобы иконки были светлыми -->
+        <item name="android:windowLightStatusBar">false</item>
+
+    </style>
+
+    <style name="Theme.PetCorner" parent="Base.Theme.PetCorner" />
+</resources>
