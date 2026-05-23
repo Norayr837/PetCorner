@@ -20,7 +20,7 @@ public class AboutActivity extends AppCompatActivity {
         btnOk.setOnClickListener(v -> {
             Intent intent = new Intent(AboutActivity.this, ProfileActivity.class);
             startActivity(intent);
-            finish(); // закрывает AboutActivity, чтобы не возвращаться назад
+            finish();
         });
     }
 }

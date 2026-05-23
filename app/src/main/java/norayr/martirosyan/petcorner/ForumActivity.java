@@ -10,13 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ForumActivity extends AppCompatActivity {
 
-    // ===== FORUM CARDS =====
+
     LinearLayout btnMain, btnServicesCard, btnVetCard, btnShopsCard;
 
-    // ===== BOTTOM NAV =====
+
     LinearLayout btnAnnouncements, btnProfile, btnForum;
 
-    // ===== DROPDOWN =====
+
     LinearLayout dropdownMenu;
     Button btnServices, btnShops, btnVeterinarians;
 
@@ -25,7 +25,7 @@ public class ForumActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum);
 
-        // ================= FORUM GRID =================
+
         btnMain = findViewById(R.id.btnMain);
         btnServicesCard = findViewById(R.id.btnServicesForum);
         btnVetCard = findViewById(R.id.btnVeterinariansForum);
@@ -36,7 +36,7 @@ public class ForumActivity extends AppCompatActivity {
         btnVetCard.setOnClickListener(v -> openChat("veterinarians"));
         btnShopsCard.setOnClickListener(v -> openChat("shops"));
 
-        // ================= DROPDOWN =================
+
         dropdownMenu = findViewById(R.id.dropdownMenu);
 
         btnServices = findViewById(R.id.btnServicesOption);
@@ -47,14 +47,14 @@ public class ForumActivity extends AppCompatActivity {
         btnShops.setOnClickListener(v -> openShops());
         btnVeterinarians.setOnClickListener(v -> openVets());
 
-        // ================= BOTTOM NAV =================
+
         btnAnnouncements = findViewById(R.id.btnAnnouncements);
         btnProfile = findViewById(R.id.btnProfile);
         btnForum = findViewById(R.id.btnForum);
 
         setActiveBottomNav();
 
-        // ================= NAV LOGIC =================
+
 
         btnAnnouncements.setOnClickListener(v -> toggleDropdown(v));
 
@@ -69,14 +69,13 @@ public class ForumActivity extends AppCompatActivity {
         });
     }
 
-    // ================= CHAT =================
+
     private void openChat(String category) {
         Intent intent = new Intent(ForumActivity.this, ChatActivity.class);
         intent.putExtra("category", category);
         startActivity(intent);
     }
 
-    // ================= DROPDOWN ACTIONS =================
     private void openServices() {
         dropdownMenu.setVisibility(View.GONE);
         startActivity(new Intent(this, ServicesActivity.class));
@@ -92,7 +91,7 @@ public class ForumActivity extends AppCompatActivity {
         startActivity(new Intent(this, VeterinariansActivity.class));
     }
 
-    // ================= DROPDOWN TOGGLE (FIXED) =================
+
     private void toggleDropdown(View anchor) {
 
         if (dropdownMenu.getVisibility() == View.GONE) {
@@ -113,7 +112,7 @@ public class ForumActivity extends AppCompatActivity {
 
                 float y = location[1] - dropdownMenu.getMeasuredHeight();
 
-                // защита: если уходит вверх
+
                 if (y < 0) {
                     y = location[1] + anchor.getHeight();
                 }
@@ -127,7 +126,7 @@ public class ForumActivity extends AppCompatActivity {
             dropdownMenu.setVisibility(View.GONE);
         }
     }
-    // ================= ACTIVE NAV =================
+
     private void setActiveBottomNav() {
 
         btnAnnouncements.setAlpha(1f);
@@ -147,13 +146,13 @@ public class ForumActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        // если меню открыто — просто закрываем
+
         if (dropdownMenu.getVisibility() == View.VISIBLE) {
             dropdownMenu.setVisibility(View.GONE);
             return;
         }
 
-        // переход в профиль
+
         startActivity(new Intent(this, ProfileActivity.class));
         finish();
     }

@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:text="Welcome to PetCorner!"
             android:textSize="50sp"
-            android:textColor="#1B5E20"
+            android:textColor="#4CAF50"
             android:layout_marginBottom="20dp"/>
 
         <TextView
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="Do you love pets? Thats mean PetCorner is for you"
             android:textSize="28sp"
-            android:textColor="#1B5E20"
+            android:textColor="#4CAF50"
             android:layout_marginBottom="30dp"/>
 
         <ImageView
@@ -40,7 +40,7 @@
             android:layout_height="50dp"
             android:text="Continue"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#1B5E20"
+            android:backgroundTint="#4CAF50"
             android:textSize="20sp"/>
 
     </LinearLayout>

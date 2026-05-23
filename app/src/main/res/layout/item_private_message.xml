@@ -1,72 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/messageBubble"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:orientation="horizontal">
+    android:padding="12dp"
+    android:background="#FFFFFF"
+    android:layout_marginBottom="8dp">
 
-    <!-- AVATAR -->
+    <!-- PROFILE CARD -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/avatarContainer"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:cardCornerRadius="20dp"
+        android:id="@+id/profileCard"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:cardCornerRadius="22.5dp"
         app:cardElevation="0dp">
 
+        <!-- PROFILE IMAGE (ВОТ ЭТО ТЕПЕРЬ ИСПОЛЬЗУЕТСЯ В JAVA) -->
         <ImageView
             android:id="@+id/profileImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@android:drawable/sym_def_app_icon"/>
+            android:src="@android:drawable/sym_def_app_icon" />
     </androidx.cardview.widget.CardView>
 
-    <!-- MESSAGE BLOCK -->
-    <LinearLayout
+    <!-- USERNAME -->
+    <TextView
+        android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="8dp"
-        android:padding="10dp"
-        android:background="@drawable/bg_other_message">
+        android:layout_toEndOf="@id/profileCard"
+        android:layout_marginStart="10dp"
+        android:text="Username"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#000" />
 
-        <!-- USERNAME + TIME -->
-        <LinearLayout
+    <!-- TIME -->
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/tvUsername"
+        android:layout_marginStart="6dp"
+        android:text="14:30"
+        android:textSize="12sp"
+        android:textColor="#777" />
+
+    <!-- MESSAGE -->
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvUsername"
+        android:layout_toEndOf="@id/profileCard"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:text="Message text"
+        android:textSize="15sp"
+        android:textColor="#000" />
+
+    <!-- MENU -->
+    <ImageView
+        android:id="@+id/btnMenu"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/settings"
+        app:tint="#000000"
+        android:padding="4dp"
+        android:visibility="gone" />
+
+    <!-- ACTIONS -->
+    <LinearLayout
+        android:id="@+id/actionContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/btnMenu"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="Edit"
+            android:textSize="12sp"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF" />
 
-            <TextView
-                android:id="@+id/tvUsername"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Username"
-                android:textStyle="bold"
-                android:textSize="13sp"
-                android:textColor="#000"/>
-
-            <TextView
-                android:id="@+id/tvTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="12:00"
-                android:textSize="11sp"
-                android:textColor="#888"
-                android:layout_marginStart="8dp"/>
-        </LinearLayout>
-
-        <!-- MESSAGE TEXT -->
-        <TextView
-            android:id="@+id/tvMessage"
+        <Button
+            android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Message"
-            android:textSize="16sp"
-            android:textColor="#000"
-            android:layout_marginTop="4dp"/>
-
+            android:text="Delete"
+            android:textSize="12sp"
+            android:layout_marginStart="6dp"
+            android:backgroundTint="#E53935"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

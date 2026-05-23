@@ -252,6 +252,8 @@ public class ServicesActivity extends AppCompatActivity {
 
     private void filter(String text) {
 
+        if (adapter == null) return; // 🔥 FIX
+
         filteredList.clear();
 
         String q = text.toLowerCase().trim();
@@ -269,34 +271,45 @@ public class ServicesActivity extends AppCompatActivity {
 
         adapter.notifyDataSetChanged();
     }
-
     private void resetList() {
+
+        if (adapter == null) return;
+
         filteredList.clear();
         filteredList.addAll(serviceList);
         adapter.notifyDataSetChanged();
     }
 
     private void sortByNewest() {
+
+        if (adapter == null) return;
+
         Collections.sort(filteredList, (a, b) ->
                 Long.compare(b.timestamp, a.timestamp));
+
         adapter.notifyDataSetChanged();
     }
 
     private void sortByRating() {
+
+        if (adapter == null) return;
+
         Collections.sort(filteredList, (a, b) ->
                 Double.compare(b.averageRating, a.averageRating));
+
         adapter.notifyDataSetChanged();
     }
+
     @Override
     public void onBackPressed() {
 
-        // если меню открыто — просто закрываем
+
         if (dropdownMenu.getVisibility() == View.VISIBLE) {
             dropdownMenu.setVisibility(View.GONE);
             return;
         }
 
-        // переход в профиль
+
         startActivity(new Intent(this, ProfileActivity.class));
         finish();
     }

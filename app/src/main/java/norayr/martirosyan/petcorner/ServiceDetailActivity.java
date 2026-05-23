@@ -5,8 +5,10 @@ import android.content.ClipboardManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.view.View;
 import android.widget.*;
+import android.view.ViewTreeObserver;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -30,7 +32,20 @@ public class ServiceDetailActivity extends AppCompatActivity
 
     RatingBar ratingBar;
     EditText etReview;
-    Button btnSendReview, btnDeleteService, btnEditService;
+
+    LinearLayout reviewContainer;
+
+    Button btnSendReview, btnDeleteService, btnEditService, btnSendMessage;
+
+    private LinearLayout btnAnnouncements, btnProfile, btnForum;
+
+    private LinearLayout dropdownMenu;
+
+    private Button btnServices, btnShops, btnVeterinarians;
+
+    ImageButton btnMoreOptions;
+
+    LinearLayout optionsMenu;
 
     ImageButton btnCopyAddress, btnCopyPhone;
 
@@ -50,6 +65,12 @@ public class ServiceDetailActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_detail);
 
+        initViews();
+        initBottomMenu();
+
+        ScrollView scrollView = findViewById(R.id.scrollView);
+        LinearLayout bottomMenu = findViewById(R.id.bottomMenu);
+
         image = findViewById(R.id.detailImage);
         name = findViewById(R.id.detailName);
         company = findViewById(R.id.detailCompany);
@@ -63,6 +84,7 @@ public class ServiceDetailActivity extends AppCompatActivity
         btnSendReview = findViewById(R.id.btnSendReview);
         btnDeleteService = findViewById(R.id.btnDeleteService);
         btnEditService = findViewById(R.id.btnEditService);
+        btnSendMessage = findViewById(R.id.btnSendMessage);
 
         btnCopyAddress = findViewById(R.id.btnCopyAddress);
         btnCopyPhone = findViewById(R.id.btnCopyPhone);
@@ -70,8 +92,10 @@ public class ServiceDetailActivity extends AppCompatActivity
         rvReviews = findViewById(R.id.rvReviews);
 
         serviceId = getIntent().getStringExtra("id");
+        serviceOwnerId = getIntent().getStringExtra("userId");
 
         reviewList = new ArrayList<>();
+
         reviewAdapter = new ReviewAdapter(
                 reviewList,
                 "service",
@@ -89,16 +113,14 @@ public class ServiceDetailActivity extends AppCompatActivity
         String ph = getIntent().getStringExtra("phone");
         String desc = getIntent().getStringExtra("description");
 
-        serviceOwnerId = getIntent().getStringExtra("userId");
-
         // MAP
         address.setOnClickListener(v -> {
             Uri uri = Uri.parse("geo:0,0?q=" + Uri.encode(address.getText().toString()));
-            startActivity(new android.content.Intent(android.content.Intent.ACTION_VIEW, uri));
+            startActivity(new Intent(Intent.ACTION_VIEW, uri));
         });
 
-        image.setOnClickListener(v -> {
 
+        image.setOnClickListener(v -> {
             String finalImage = (serviceImage != null && !serviceImage.isEmpty())
                     ? serviceImage
                     : img;
@@ -110,26 +132,22 @@ public class ServiceDetailActivity extends AppCompatActivity
             startActivity(intent);
         });
 
-
+        // PHONE ACTIONS
         phone.setOnClickListener(v -> {
 
             String raw = phone.getText().toString().trim();
             String number = raw.replaceAll("[^0-9+]", "");
             String cleanNumber = number.replace("+", "");
 
-            // 📞 звонок
             Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
             phoneIntent.setData(Uri.parse("tel:" + number));
 
-            // 💬 WhatsApp
             Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
             whatsappIntent.setData(Uri.parse("https://wa.me/" + cleanNumber));
 
-            // 🟣 Viber
             Intent viberIntent = new Intent(Intent.ACTION_VIEW);
             viberIntent.setData(Uri.parse("viber://chat?number=" + cleanNumber));
 
-            // ✈️ Telegram
             Intent telegramIntent = new Intent(Intent.ACTION_VIEW);
 
             if (number.startsWith("+")) {
@@ -144,11 +162,7 @@ public class ServiceDetailActivity extends AppCompatActivity
             extra.add(telegramIntent);
 
             Intent chooser = Intent.createChooser(phoneIntent, "Choose action");
-
-            chooser.putExtra(
-                    Intent.EXTRA_INITIAL_INTENTS,
-                    extra.toArray(new Intent[0])
-            );
+            chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, extra.toArray(new Intent[0]));
 
             startActivity(chooser);
         });
@@ -159,7 +173,7 @@ public class ServiceDetailActivity extends AppCompatActivity
 
         // EDIT
         btnEditService.setOnClickListener(v -> {
-            android.content.Intent intent = new android.content.Intent(this, AddServiceActivity.class);
+            Intent intent = new Intent(this, AddServiceActivity.class);
 
             intent.putExtra("editMode", true);
             intent.putExtra("id", serviceId);
@@ -175,12 +189,55 @@ public class ServiceDetailActivity extends AppCompatActivity
             startActivity(intent);
         });
 
+        // SEND MESSAGE 💬
+        btnSendMessage.setOnClickListener(v -> {
+
+            String currentUserId = FirebaseAuth.getInstance().getUid();
+            String receiverId = serviceOwnerId;
+
+            if (currentUserId == null || receiverId == null) return;
+
+            String chatId = getChatId(currentUserId, receiverId);
+
+            DatabaseReference chatRef = FirebaseDatabase.getInstance()
+                    .getReference("private_chats")
+                    .child(chatId);
+
+            chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    if (!snapshot.exists()) {
+
+                        chatRef.child("users").child(currentUserId).setValue(true);
+                        chatRef.child("users").child(receiverId).setValue(true);
+
+                        chatRef.child("createdAt").setValue(System.currentTimeMillis());
+                        chatRef.child("lastMessage").setValue("");
+                        chatRef.child("lastTime").setValue(System.currentTimeMillis());
+                    }
+
+
+                    Intent intent = new Intent(ServiceDetailActivity.this, PrivateChatActivity.class);
+                    intent.putExtra("chatId", chatId);
+                    intent.putExtra("receiverId", receiverId); // 🔥 ВОТ ЭТО
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {}
+            });
+        });
+        // LOAD DATA
         if (serviceId == null) {
+
             name.setText(n);
             company.setText(comp);
             address.setText(addr != null ? addr : "");
             phone.setText(ph != null ? ph : "");
             description.setText(desc != null ? desc : "");
+
+            serviceOwnerId = getIntent().getStringExtra("userId");
 
             if (img != null && !img.isEmpty()) {
                 Picasso.get().load(img).into(image);
@@ -192,20 +249,28 @@ public class ServiceDetailActivity extends AppCompatActivity
             loadReviews();
         }
 
-        // ADD REVIEW
+
         btnSendReview.setOnClickListener(v -> {
+
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user == null) return;
+
+            String currentUserId = user.getUid();
+
+
+            if (serviceOwnerId != null && serviceOwnerId.equals(currentUserId)) {
+                Toast.makeText(this, "You cannot review your own service", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             String text = etReview.getText().toString().trim();
             float rating = ratingBar.getRating();
 
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            if (user == null || text.isEmpty() || reviewsRef == null) return;
-
-            String userId = user.getUid();
+            if (text.isEmpty() || reviewsRef == null) return;
 
             FirebaseDatabase.getInstance()
                     .getReference("users")
-                    .child(userId)
+                    .child(currentUserId)
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -218,7 +283,7 @@ public class ServiceDetailActivity extends AppCompatActivity
 
                             Review review = new Review(
                                     id,
-                                    userId,
+                                    currentUserId,
                                     username,
                                     text,
                                     rating
@@ -237,7 +302,7 @@ public class ServiceDetailActivity extends AppCompatActivity
                     });
         });
 
-        // DELETE
+
         btnDeleteService.setOnClickListener(v -> {
 
             if (serviceId == null) return;
@@ -262,7 +327,106 @@ public class ServiceDetailActivity extends AppCompatActivity
                     .setNegativeButton("Cancel", null)
                     .show();
         });
+
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+
+            int lastScrollY = 0;
+            boolean isVisible = true;
+
+            @Override
+            public void onScrollChanged() {
+
+                int scrollY = scrollView.getScrollY();
+
+                if (scrollY > lastScrollY + 10 && isVisible) {
+
+                    bottomMenu.animate()
+                            .translationY(bottomMenu.getHeight())
+                            .setDuration(200);
+                    isVisible = false;
+
+                } else if (scrollY < lastScrollY - 10 && !isVisible) {
+
+                    bottomMenu.animate()
+                            .translationY(0)
+                            .setDuration(200);
+                    isVisible = true;
+                }
+
+                lastScrollY = scrollY;
+            }
+        });
     }
+
+    private void initViews() {
+
+        btnAnnouncements = findViewById(R.id.btnServices);
+        btnProfile = findViewById(R.id.btnProfile);
+        btnForum = findViewById(R.id.btnForum);
+
+        dropdownMenu = findViewById(R.id.dropdownMenu);
+
+        btnServices = findViewById(R.id.btnServicesOption);
+        btnShops = findViewById(R.id.btnShops);
+        btnVeterinarians = findViewById(R.id.btnVeterinarians);
+        reviewContainer = findViewById(R.id.reviewContainer);
+
+
+        // ❗ ВАЖНО: используем поля класса, а не новые переменные
+        btnMoreOptions = findViewById(R.id.btnMoreOptions);
+        optionsMenu = findViewById(R.id.optionsMenu);
+
+        btnMoreOptions.setOnClickListener(v -> {
+
+            if (optionsMenu.getVisibility() == View.VISIBLE) {
+                optionsMenu.setVisibility(View.GONE);
+            } else {
+                optionsMenu.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+
+
+    private void initBottomMenu() {
+
+        btnAnnouncements.setOnClickListener(v ->
+                dropdownMenu.setVisibility(
+                        dropdownMenu.getVisibility() == View.VISIBLE
+                                ? View.GONE : View.VISIBLE
+                )
+        );
+
+        btnProfile.setOnClickListener(v ->
+                startActivity(new Intent(this, ProfileActivity.class))
+        );
+
+        btnForum.setOnClickListener(v ->
+                startActivity(new Intent(this, ForumActivity.class))
+        );
+
+        btnServices.setOnClickListener(v ->
+                startActivity(new Intent(this, ServicesActivity.class))
+        );
+
+        btnShops.setOnClickListener(v ->
+                startActivity(new Intent(this, ShopActivity.class))
+        );
+
+        btnVeterinarians.setOnClickListener(v ->
+                startActivity(new Intent(this, VeterinariansActivity.class))
+        );
+    }
+
+
+    private String getChatId(String user1, String user2) {
+        if (user1.compareTo(user2) < 0) {
+            return user1 + "_" + user2;
+        } else {
+            return user2 + "_" + user1;
+        }
+    }
+
 
     private void loadFromFirebase(String id) {
 
@@ -296,6 +460,7 @@ public class ServiceDetailActivity extends AppCompatActivity
                     public void onCancelled(@NonNull DatabaseError error) {}
                 });
     }
+
 
     private void loadReviews() {
 
@@ -342,6 +507,7 @@ public class ServiceDetailActivity extends AppCompatActivity
         });
     }
 
+
     private void updateButtons() {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -351,9 +517,18 @@ public class ServiceDetailActivity extends AppCompatActivity
                         serviceOwnerId != null &&
                         user.getUid().equals(serviceOwnerId);
 
-        btnDeleteService.setVisibility(isOwner ? android.view.View.VISIBLE : android.view.View.GONE);
-        btnEditService.setVisibility(isOwner ? android.view.View.VISIBLE : android.view.View.GONE);
+        btnDeleteService.setVisibility(isOwner ? View.VISIBLE : View.GONE);
+        btnEditService.setVisibility(isOwner ? View.VISIBLE : View.GONE);
+        btnSendMessage.setVisibility(!isOwner ? View.VISIBLE : View.GONE);
+        reviewContainer.setVisibility(isOwner ? View.GONE : View.VISIBLE);
+
+        btnMoreOptions.setVisibility(isOwner ? View.VISIBLE : View.GONE);
+
+        if (!isOwner) {
+            optionsMenu.setVisibility(View.GONE);
+        }
     }
+
 
     private void copy(String text) {
 

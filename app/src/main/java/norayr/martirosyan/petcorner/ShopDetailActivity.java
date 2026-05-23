@@ -4,6 +4,7 @@ import android.content.*;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.*;
 
 import androidx.annotation.NonNull;
@@ -26,13 +27,21 @@ public class ShopDetailActivity extends AppCompatActivity
     ImageView image;
     TextView name, address, phone, description, ownerName;
 
+    LinearLayout reviewContainer;
+
     RatingBar ratingBar;
     EditText etReview;
 
     Button btnSendReview, btnDeleteShop, btnEditShop;
     ImageButton btnCopyAddress, btnCopyPhone;
 
+    Button btnSendMessageShop;
+
     RecyclerView rvReviews;
+
+    ScrollView scrollView;
+
+    LinearLayout bottomMenu;
 
     List<Review> reviewList;
     ReviewAdapter reviewAdapter;
@@ -43,21 +52,63 @@ public class ShopDetailActivity extends AppCompatActivity
     String shopOwnerId;
     String shopImage;
 
+    private LinearLayout btnAnnouncements, btnProfile, btnForum;
+
+    private LinearLayout dropdownMenu;
+
+    private Button btnServices, btnShops, btnVeterinarians;
+
+    ImageButton btnMoreOptions;
+
+    LinearLayout optionsMenu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_detail);
 
         init();
+        initBottomMenu();
         checkIntent();
         initReviews();
         initClicks();
 
         loadFromFirebase();
         loadReviews();
+
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+
+            int lastScrollY = 0;
+            boolean isVisible = true;
+
+            @Override
+            public void onScrollChanged() {
+
+                int scrollY = scrollView.getScrollY();
+
+                if (scrollY > lastScrollY + 10 && isVisible) {
+
+                    bottomMenu.animate()
+                            .translationY(bottomMenu.getHeight())
+                            .setDuration(200);
+
+                    isVisible = false;
+
+                } else if (scrollY < lastScrollY - 10 && !isVisible) {
+
+                    bottomMenu.animate()
+                            .translationY(0)
+                            .setDuration(200);
+
+                    isVisible = true;
+                }
+
+                lastScrollY = scrollY;
+            }
+        });
     }
 
-    // ===== INIT =====
+
     private void init() {
 
         image = findViewById(R.id.detailImage);
@@ -66,6 +117,8 @@ public class ShopDetailActivity extends AppCompatActivity
         phone = findViewById(R.id.detailPhone);
         description = findViewById(R.id.detailDescription);
         ownerName = findViewById(R.id.detailOwnerName);
+
+        reviewContainer = findViewById(R.id.reviewContainer);
 
         ratingBar = findViewById(R.id.ratingBar);
         etReview = findViewById(R.id.etReview);
@@ -78,9 +131,36 @@ public class ShopDetailActivity extends AppCompatActivity
         btnCopyPhone = findViewById(R.id.btnCopyPhone);
 
         rvReviews = findViewById(R.id.rvReviews);
+        btnSendMessageShop = findViewById(R.id.btnSendMessageShop);
+
+        scrollView = findViewById(R.id.scrollView);
+        bottomMenu = findViewById(R.id.bottomMenu);
+
+        btnAnnouncements = findViewById(R.id.btnServices);
+        btnProfile = findViewById(R.id.btnProfile);
+        btnForum = findViewById(R.id.btnForum);
+
+        dropdownMenu = findViewById(R.id.dropdownMenu);
+
+        btnServices = findViewById(R.id.btnServicesOption);
+        btnShops = findViewById(R.id.btnShops);
+        btnVeterinarians = findViewById(R.id.btnVeterinarians);
+
+        btnMoreOptions = findViewById(R.id.btnMoreOptions);
+        optionsMenu = findViewById(R.id.optionsMenu);
+
+        btnMoreOptions.setOnClickListener(v -> {
+
+            if (optionsMenu.getVisibility() == View.VISIBLE) {
+                optionsMenu.setVisibility(View.GONE);
+            } else {
+                optionsMenu.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
-    // ===== INTENT =====
+
+
     private void checkIntent() {
 
         shopId = getIntent().getStringExtra("id");
@@ -91,7 +171,7 @@ public class ShopDetailActivity extends AppCompatActivity
         }
     }
 
-    // ===== REVIEWS INIT =====
+
     private void initReviews() {
 
         reviewList = new ArrayList<>();
@@ -107,7 +187,7 @@ public class ShopDetailActivity extends AppCompatActivity
         rvReviews.setAdapter(reviewAdapter);
     }
 
-    // ===== CLICKS =====
+
     private void initClicks() {
 
         address.setOnClickListener(v -> {
@@ -138,19 +218,19 @@ public class ShopDetailActivity extends AppCompatActivity
             String number = raw.replaceAll("[^0-9+]", "");
             String cleanNumber = number.replace("+", "");
 
-            // 📞 звонок
+
             Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
             phoneIntent.setData(Uri.parse("tel:" + number));
 
-            // 💬 WhatsApp
+
             Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
             whatsappIntent.setData(Uri.parse("https://wa.me/" + cleanNumber));
 
-            // 🟣 Viber
+
             Intent viberIntent = new Intent(Intent.ACTION_VIEW);
             viberIntent.setData(Uri.parse("viber://chat?number=" + cleanNumber));
 
-            // ✈️ Telegram
+
             Intent telegramIntent = new Intent(Intent.ACTION_VIEW);
 
             if (number.startsWith("+")) {
@@ -172,6 +252,44 @@ public class ShopDetailActivity extends AppCompatActivity
             );
 
             startActivity(chooser);
+        });
+
+        btnSendMessageShop.setOnClickListener(v -> {
+
+            String currentUserId = FirebaseAuth.getInstance().getUid();
+            String receiverId = shopOwnerId;
+
+            if (currentUserId == null || receiverId == null) return;
+
+            String chatId = getChatId(currentUserId, receiverId);
+
+            DatabaseReference chatRef = FirebaseDatabase.getInstance()
+                    .getReference("private_chats")
+                    .child(chatId);
+
+            chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    if (!snapshot.exists()) {
+
+                        chatRef.child("users").child(currentUserId).setValue(true);
+                        chatRef.child("users").child(receiverId).setValue(true);
+
+                        chatRef.child("createdAt").setValue(System.currentTimeMillis());
+                        chatRef.child("lastMessage").setValue("");
+                        chatRef.child("lastTime").setValue(System.currentTimeMillis());
+                    }
+
+                    Intent intent = new Intent(ShopDetailActivity.this, PrivateChatActivity.class);
+                    intent.putExtra("chatId", chatId);
+                    intent.putExtra("receiverId", receiverId);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {}
+            });
         });
 
         btnCopyAddress.setOnClickListener(v -> copy(address.getText().toString()));
@@ -201,7 +319,7 @@ public class ShopDetailActivity extends AppCompatActivity
         btnDeleteShop.setOnClickListener(v -> deleteShop());
     }
 
-    // ===== LOAD SHOP =====
+
     private void loadFromFirebase() {
 
         FirebaseDatabase.getInstance()
@@ -241,7 +359,7 @@ public class ShopDetailActivity extends AppCompatActivity
                 });
     }
 
-    // ===== LOAD REVIEWS =====
+
     private void loadReviews() {
 
         reviewsRef = FirebaseDatabase.getInstance()
@@ -286,7 +404,7 @@ public class ShopDetailActivity extends AppCompatActivity
         });
     }
 
-    // ===== ADD REVIEW =====
+
     private void addReview() {
 
         String text = etReview.getText().toString().trim();
@@ -328,7 +446,7 @@ public class ShopDetailActivity extends AppCompatActivity
                 });
     }
 
-    // ===== DELETE SHOP =====
+
     private void deleteShop() {
 
         new AlertDialog.Builder(this)
@@ -348,7 +466,37 @@ public class ShopDetailActivity extends AppCompatActivity
                 .show();
     }
 
-    // ===== OWNER UI =====
+    private void initBottomMenu() {
+
+        btnAnnouncements.setOnClickListener(v ->
+                dropdownMenu.setVisibility(
+                        dropdownMenu.getVisibility() == View.VISIBLE
+                                ? View.GONE : View.VISIBLE
+                )
+        );
+
+        btnProfile.setOnClickListener(v ->
+                startActivity(new Intent(this, ProfileActivity.class))
+        );
+
+        btnForum.setOnClickListener(v ->
+                startActivity(new Intent(this, ForumActivity.class))
+        );
+
+        btnServices.setOnClickListener(v ->
+                startActivity(new Intent(this, ServicesActivity.class))
+        );
+
+        btnShops.setOnClickListener(v ->
+                startActivity(new Intent(this, ShopActivity.class))
+        );
+
+        btnVeterinarians.setOnClickListener(v ->
+                startActivity(new Intent(this, VeterinariansActivity.class))
+        );
+    }
+
+
     private void updateButtons() {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -360,6 +508,15 @@ public class ShopDetailActivity extends AppCompatActivity
 
         btnDeleteShop.setVisibility(isOwner ? View.VISIBLE : View.GONE);
         btnEditShop.setVisibility(isOwner ? View.VISIBLE : View.GONE);
+        btnSendMessageShop.setVisibility(isOwner ? View.GONE : View.VISIBLE);
+
+
+        reviewContainer.setVisibility(isOwner ? View.GONE : View.VISIBLE);
+        btnMoreOptions.setVisibility(isOwner ? View.VISIBLE : View.GONE);
+
+        if (!isOwner) {
+            optionsMenu.setVisibility(View.GONE);
+        }
     }
 
     private void copy(String text) {
@@ -377,5 +534,12 @@ public class ShopDetailActivity extends AppCompatActivity
     @Override
     public void onReviewsChanged() {
         loadReviews();
+    }
+    private String getChatId(String user1, String user2) {
+        if (user1.compareTo(user2) < 0) {
+            return user1 + "_" + user2;
+        } else {
+            return user2 + "_" + user1;
+        }
     }
 }

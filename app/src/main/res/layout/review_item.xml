@@ -8,14 +8,14 @@
     android:background="#FFFFFF"
     android:layout_marginBottom="8dp">
 
-    <!-- TOP ROW -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
-        <!-- PROFILE IMAGE -->
+
         <androidx.cardview.widget.CardView
             android:layout_width="45dp"
             android:layout_height="45dp"
@@ -30,7 +30,7 @@
                 android:src="@drawable/ic_launcher_foreground" />
         </androidx.cardview.widget.CardView>
 
-        <!-- NAME + DATE -->
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"

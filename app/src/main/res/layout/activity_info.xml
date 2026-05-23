@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:text="About PetCorner"
             android:textSize="36sp"
-            android:textColor="#1B5E20"
+            android:textColor="#4CAF50"
             android:layout_marginBottom="20dp"/>
 
         <TextView
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="PetCorner is an app created for pet lovers. Here you can choose your favorite pet and explore different animals whether you love dogs, cats, fish or parrots — this app helps you discover and enjoy your favorite pets."
             android:textSize="20sp"
-            android:textColor="#1B5E20"
+            android:textColor="#4CAF50"
             android:layout_marginBottom="25dp"/>
 
         <ImageView
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:text="PetCorner's goal is to unite people from all over the world who have pets!"
             android:textSize="20sp"
-            android:textColor="#1B5E20"
+            android:textColor="#4CAF50"
             android:layout_marginBottom="30dp"/>
 
         <Button
@@ -48,7 +48,7 @@
             android:layout_height="50dp"
             android:text="Go to Login"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#1B5E20"
+            android:backgroundTint="#4CAF50"
             android:textSize="20sp"/>
 
     </LinearLayout>

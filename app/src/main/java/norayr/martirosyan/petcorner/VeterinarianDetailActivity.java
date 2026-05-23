@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.*;
 
 import androidx.annotation.NonNull;
@@ -32,14 +33,31 @@ public class VeterinarianDetailActivity extends AppCompatActivity
     EditText etReview;
 
     Button btnSendReview, btnDeleteVet, btnEditVet;
+    Button btnSendMessageVet;
     ImageButton btnCopyAddress, btnCopyPhone;
 
+    LinearLayout reviewContainer;
+
     RecyclerView rvReviews;
+
+    ScrollView scrollView;
+
+    LinearLayout bottomMenu;
 
     List<Review> reviewList;
     ReviewAdapter reviewAdapter;
 
     DatabaseReference reviewsRef;
+
+    private LinearLayout btnAnnouncements, btnProfile, btnForum;
+
+    private LinearLayout dropdownMenu;
+
+    private Button btnServices, btnShops, btnVeterinarians;
+
+    ImageButton btnMoreOptions;
+
+    LinearLayout optionsMenu;
 
     String vetId;
     String vetOwnerId;
@@ -54,9 +72,42 @@ public class VeterinarianDetailActivity extends AppCompatActivity
         checkIntent();
         initReviews();
         initClicks();
+        initBottomMenu();
 
         loadFromFirebase();
         loadReviews();
+
+
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+
+            int lastScrollY = 0;
+            boolean isVisible = true;
+
+            @Override
+            public void onScrollChanged() {
+
+                int scrollY = scrollView.getScrollY();
+
+                if (scrollY > lastScrollY + 10 && isVisible) {
+
+                    bottomMenu.animate()
+                            .translationY(bottomMenu.getHeight())
+                            .setDuration(200);
+
+                    isVisible = false;
+
+                } else if (scrollY < lastScrollY - 10 && !isVisible) {
+
+                    bottomMenu.animate()
+                            .translationY(0)
+                            .setDuration(200);
+
+                    isVisible = true;
+                }
+
+                lastScrollY = scrollY;
+            }
+        });
     }
 
     private void init() {
@@ -77,8 +128,35 @@ public class VeterinarianDetailActivity extends AppCompatActivity
 
         btnCopyAddress = findViewById(R.id.btnCopyAddress);
         btnCopyPhone = findViewById(R.id.btnCopyPhone);
+        btnSendMessageVet = findViewById(R.id.btnSendMessageVet);
+
+        btnAnnouncements = findViewById(R.id.btnServices);
+        btnProfile = findViewById(R.id.btnProfile);
+        btnForum = findViewById(R.id.btnForum);
+
+        dropdownMenu = findViewById(R.id.dropdownMenu);
+
+        btnServices = findViewById(R.id.btnServicesOption);
+        btnShops = findViewById(R.id.btnShops);
+        btnVeterinarians = findViewById(R.id.btnVeterinarians);
+        reviewContainer = findViewById(R.id.reviewContainer);
 
         rvReviews = findViewById(R.id.rvReviews);
+
+        scrollView = findViewById(R.id.scrollView);
+        bottomMenu = findViewById(R.id.bottomMenu);
+
+        btnMoreOptions = findViewById(R.id.btnMoreOptions);
+        optionsMenu = findViewById(R.id.optionsMenu);
+
+        btnMoreOptions.setOnClickListener(v -> {
+
+            if (optionsMenu.getVisibility() == View.VISIBLE) {
+                optionsMenu.setVisibility(View.GONE);
+            } else {
+                optionsMenu.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     private void checkIntent() {
@@ -123,6 +201,44 @@ public class VeterinarianDetailActivity extends AppCompatActivity
             Intent intent = new Intent(this, FullImageActivity.class);
             intent.putExtra("image", vetImage);
             startActivity(intent);
+        });
+
+        btnSendMessageVet.setOnClickListener(v -> {
+
+            String currentUserId = FirebaseAuth.getInstance().getUid();
+            String receiverId = vetOwnerId;
+
+            if (currentUserId == null || receiverId == null) return;
+
+            String chatId = getChatId(currentUserId, receiverId);
+
+            DatabaseReference chatRef = FirebaseDatabase.getInstance()
+                    .getReference("private_chats")
+                    .child(chatId);
+
+            chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    if (!snapshot.exists()) {
+
+                        chatRef.child("users").child(currentUserId).setValue(true);
+                        chatRef.child("users").child(receiverId).setValue(true);
+
+                        chatRef.child("createdAt").setValue(System.currentTimeMillis());
+                        chatRef.child("lastMessage").setValue("");
+                        chatRef.child("lastTime").setValue(System.currentTimeMillis());
+                    }
+
+                    Intent intent = new Intent(VeterinarianDetailActivity.this, PrivateChatActivity.class);
+                    intent.putExtra("chatId", chatId);
+                    intent.putExtra("receiverId", receiverId);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {}
+            });
         });
 
         phone.setOnClickListener(v -> {
@@ -272,47 +388,75 @@ public class VeterinarianDetailActivity extends AppCompatActivity
 
     private void addReview() {
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         String text = etReview.getText().toString().trim();
         float rating = ratingBar.getRating();
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null || text.isEmpty()) return;
+        // ❗ базовые проверки
+        if (user == null) {
+            Toast.makeText(this, "You need to login", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        String id = FirebaseDatabase.getInstance()
-                .getReference("vet_reviews")
-                .child(vetId)
-                .push()
-                .getKey();
+        if (text.isEmpty()) {
+            Toast.makeText(this, "Write a review first", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        if (id == null) return;
+        if (reviewsRef == null || vetId == null) {
+            return;
+        }
+
+        // ❗ запрет владельцу
+        if (vetOwnerId != null && vetOwnerId.equals(user.getUid())) {
+            Toast.makeText(this, "You cannot review your own profile", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String reviewId = reviewsRef.push().getKey();
+        if (reviewId == null) return;
+
+        String userId = user.getUid();
 
         FirebaseDatabase.getInstance()
                 .getReference("users")
-                .child(user.getUid())
+                .child(userId)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snap) {
 
                         String username = snap.child("username").getValue(String.class);
+                        if (username == null || username.isEmpty()) {
+                            username = "User";
+                        }
 
-                        Review r = new Review(
-                                id,
-                                user.getUid(),
-                                username != null ? username : "User",
+                        Review review = new Review(
+                                reviewId,
+                                userId,
+                                username,
                                 text,
                                 rating
                         );
 
-                        reviewsRef.child(id).setValue(r);
-
-                        etReview.setText("");
-                        ratingBar.setRating(0);
-
-                        loadReviews();
+                        reviewsRef.child(reviewId).setValue(review)
+                                .addOnSuccessListener(unused -> {
+                                    etReview.setText("");
+                                    ratingBar.setRating(0f);
+                                    loadReviews();
+                                })
+                                .addOnFailureListener(e ->
+                                        Toast.makeText(VeterinarianDetailActivity.this,
+                                                "Failed to send review",
+                                                Toast.LENGTH_SHORT).show());
                     }
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {}
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(VeterinarianDetailActivity.this,
+                                "Error loading user data",
+                                Toast.LENGTH_SHORT).show();
+                    }
                 });
     }
 
@@ -339,6 +483,37 @@ public class VeterinarianDetailActivity extends AppCompatActivity
                 .show();
     }
 
+
+    private void initBottomMenu() {
+
+        btnAnnouncements.setOnClickListener(v ->
+                dropdownMenu.setVisibility(
+                        dropdownMenu.getVisibility() == View.VISIBLE
+                                ? View.GONE : View.VISIBLE
+                )
+        );
+
+        btnProfile.setOnClickListener(v ->
+                startActivity(new Intent(this, ProfileActivity.class))
+        );
+
+        btnForum.setOnClickListener(v ->
+                startActivity(new Intent(this, ForumActivity.class))
+        );
+
+        btnServices.setOnClickListener(v ->
+                startActivity(new Intent(this, ServicesActivity.class))
+        );
+
+        btnShops.setOnClickListener(v ->
+                startActivity(new Intent(this, ShopActivity.class))
+        );
+
+        btnVeterinarians.setOnClickListener(v ->
+                startActivity(new Intent(this, VeterinariansActivity.class))
+        );
+    }
+
     private void updateButtons() {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -350,6 +525,16 @@ public class VeterinarianDetailActivity extends AppCompatActivity
 
         btnDeleteVet.setVisibility(isOwner ? View.VISIBLE : View.GONE);
         btnEditVet.setVisibility(isOwner ? View.VISIBLE : View.GONE);
+        btnSendMessageVet.setVisibility(isOwner ? View.GONE : View.VISIBLE);
+
+
+        reviewContainer.setVisibility(isOwner ? View.GONE : View.VISIBLE);
+        btnMoreOptions.setVisibility(isOwner ? View.VISIBLE : View.GONE);
+
+        if (!isOwner) {
+            optionsMenu.setVisibility(View.GONE);
+        }
+
     }
 
     private void copy(String text) {
@@ -367,5 +552,13 @@ public class VeterinarianDetailActivity extends AppCompatActivity
     @Override
     public void onReviewsChanged() {
         loadReviews();
+    }
+
+    private String getChatId(String user1, String user2) {
+        if (user1.compareTo(user2) < 0) {
+            return user1 + "_" + user2;
+        } else {
+            return user2 + "_" + user1;
+        }
     }
 }

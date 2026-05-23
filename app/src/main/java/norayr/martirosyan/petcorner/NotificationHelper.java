@@ -20,10 +20,10 @@ public class NotificationHelper {
                                         String text,
                                         String noteId) {
 
-        // 🔥 создаём канал (если его нет)
+
         createChannel(context);
 
-        // 🔒 Android 13+ permission check
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (context.checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -56,7 +56,7 @@ public class NotificationHelper {
                 .notify((int) System.currentTimeMillis(), builder.build());
     }
 
-    // 🔥 автоматическое создание канала
+
     private static void createChannel(Context context) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

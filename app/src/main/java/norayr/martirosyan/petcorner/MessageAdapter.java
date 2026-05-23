@@ -66,7 +66,7 @@ public class MessageAdapter extends ArrayAdapter<ChatMessage> {
         if (msg.profileImage != null && !msg.profileImage.isEmpty()) {
             Picasso.get().load(msg.profileImage).into(profileImage);
         } else {
-            profileImage.setImageResource(android.R.drawable.sym_def_app_icon);
+            profileImage.setImageResource(R.drawable.ic_launcher_foreground);
         }
 
         // CURRENT USER

@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ReminderWorkerHelper {
 
-    private static final long MIN_DELAY = 15_000; // 15 секунд минимум
+    private static final long MIN_DELAY = 15_000;
 
     public static void setReminder(Context context, Note note) {
 

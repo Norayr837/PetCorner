@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="norayr.martirosyan.petcorner">
-    <!-- Permissions -->
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
@@ -21,6 +21,14 @@
         android:roundIcon="@drawable/dog"
         android:supportsRtl="true"
         android:theme="@style/Theme.PetCorner">
+
+
+        <activity
+            android:name=".ChatListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrivateChatActivity"
+            android:exported="false" />
         <activity
             android:name=".FullImageActivity"
             android:exported="false" />

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 import com.cloudinary.android.MediaManager;
@@ -27,7 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     LinearLayout settingsContainer;
 
-    TextView btnLanguages, btnPrivacy, btnAbout;
+    TextView  btnPrivacy, btnAbout;
 
     Button btnAdminPanel;
 
@@ -37,10 +38,13 @@ public class ProfileActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
     private long lastBackPressedTime = 0;
 
-    // NAV BUTTONS
+
     LinearLayout btnServices, btnProfile, btnForum;
 
     LinearLayout dropdownMenu;
+
+
+    LinearLayout btnMyChats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,19 @@ public class ProfileActivity extends AppCompatActivity {
             return;
         }
 
+        FirebaseMessaging.getInstance().getToken()
+                .addOnSuccessListener(token -> {
+
+                    String uid = FirebaseAuth.getInstance().getUid();
+
+                    FirebaseDatabase.getInstance()
+                            .getReference("users")
+                            .child(uid)
+                            .child("fcmToken")
+                            .setValue(token);
+                });
+
+
         userId = currentUser.getUid();
 
         // INIT VIEWS
@@ -63,7 +80,7 @@ public class ProfileActivity extends AppCompatActivity {
         btnGear = findViewById(R.id.btnGear);
         settingsContainer = findViewById(R.id.settingsContainer);
 
-        btnLanguages = findViewById(R.id.btnLanguages);
+
         btnPrivacy = findViewById(R.id.btnPrivacy);
         btnAbout = findViewById(R.id.btnAbout);
 
@@ -76,7 +93,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         dropdownMenu = findViewById(R.id.dropdownMenu);
 
-        // ================= SETTINGS =================
+
+        btnMyChats = findViewById(R.id.btnMyChats);
+
+
         btnGear.setOnClickListener(v -> {
             settingsContainer.setVisibility(
                     settingsContainer.getVisibility() == View.GONE
@@ -85,10 +105,7 @@ public class ProfileActivity extends AppCompatActivity {
             );
         });
 
-        btnLanguages.setOnClickListener(v -> {
-            startActivity(new Intent(this, LanguagesActivity.class));
-            settingsContainer.setVisibility(View.GONE);
-        });
+
 
         btnPrivacy.setOnClickListener(v -> {
             startActivity(new Intent(this, PrivacyPolicyActivity.class));
@@ -122,12 +139,17 @@ public class ProfileActivity extends AppCompatActivity {
         // ================= OTHER NAV =================
 
         btnProfile.setOnClickListener(v -> {
-            // уже тут → ничего не делаем
             setActiveTab(btnProfile);
         });
 
         btnForum.setOnClickListener(v -> {
             startActivity(new Intent(this, ForumActivity.class));
+        });
+
+        // 🔥 NEW: OPEN CHAT LIST
+        btnMyChats.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, ChatListActivity.class);
+            startActivity(intent);
         });
 
         // ================= OTHER BUTTONS =================
@@ -213,11 +235,9 @@ public class ProfileActivity extends AppCompatActivity {
         btnAdminPanel.setOnClickListener(v ->
                 startActivity(new Intent(ProfileActivity.this, AdminActivity.class)));
 
-        // 🔥 ВАЖНО: всегда Profile активный тут
         setActiveTab(btnProfile);
     }
 
-    // ================= NAV ACTIVE =================
     private void setActiveTab(LinearLayout active) {
 
         btnServices.setBackgroundResource(R.drawable.circle_button);
@@ -227,7 +247,6 @@ public class ProfileActivity extends AppCompatActivity {
         active.setBackgroundResource(R.drawable.circle_button_active);
     }
 
-    // ================= IMAGE UPLOAD =================
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -272,13 +291,13 @@ public class ProfileActivity extends AppCompatActivity {
                     .dispatch();
         }
     }
+
     @Override
     public void onBackPressed() {
 
         long currentTime = System.currentTimeMillis();
 
         if (currentTime - lastBackPressedTime < 2000) {
-            // second press within 2 seconds → exit app
             finishAffinity();
             return;
         }

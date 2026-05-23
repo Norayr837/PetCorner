@@ -7,6 +7,7 @@
     android:background="#F5F5F5">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -154,13 +155,14 @@
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
 
-            <!-- REVIEW INPUT -->
             <LinearLayout
+                android:id="@+id/reviewContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/bg_card"
                 android:layout_margin="10dp"
+                android:visibility="gone"
                 android:padding="12dp">
 
                 <EditText
@@ -181,33 +183,62 @@
                     android:textColor="#fff"/>
             </LinearLayout>
 
-            <!-- ACTION BUTTONS -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_margin="10dp">
 
-                <Button
-                    android:id="@+id/btnEditShop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edit Shop"
-                    android:backgroundTint="#FF9800"
-                    android:textColor="#fff"
-                    android:visibility="gone"/>
-
-                <Button
-                    android:id="@+id/btnDeleteShop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Delete Shop"
-                    android:backgroundTint="#F44336"
-                    android:textColor="#fff"
+                <!-- кнопка меню (⋮) -->
+                <ImageButton
+                    android:id="@+id/btnMoreOptions"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:visibility="gone"
-                    android:layout_marginStart="10dp"/>
+                    android:src="@android:drawable/ic_menu_more"
+                    android:background="@android:color/transparent"/>
+
+                <!-- скрытое меню -->
+                <LinearLayout
+                    android:id="@+id/optionsMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:layout_marginTop="8dp">
+
+                    <Button
+                        android:id="@+id/btnEditShop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit Service"
+                        android:backgroundTint="#FF9800"
+                        android:textColor="#fff"
+                        android:visibility="gone"/>
+
+                    <Button
+                        android:id="@+id/btnDeleteShop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Delete Service"
+                        android:backgroundTint="#F44336"
+                        android:textColor="#fff"
+                        android:visibility="gone"
+                        android:layout_marginStart="10dp"/>
+
+                </LinearLayout>
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSendMessageShop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Send Message"
+                android:backgroundTint="#4CAF50"
+                android:textColor="#fff"
+                android:visibility="gone"
+                android:layout_marginStart="10dp"/>
 
             <!-- REVIEWS LIST -->
             <androidx.recyclerview.widget.RecyclerView
@@ -219,5 +250,128 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottomMenu"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="#4CAF50"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/btnServices"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/circle_button"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_services"
+                app:tint="#FFFFFF"/>
+
+            <TextView
+                android:text="Announcements"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/circle_button"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_main"
+                app:tint="#FFFFFF"/>
+
+            <TextView
+                android:text="My Profile"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnForum"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/circle_button"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_forum"
+                app:tint="#FFFFFF"/>
+
+            <TextView
+                android:text="Forum"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 📦 DROPDOWN -->
+    <LinearLayout
+        android:id="@+id/dropdownMenu"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:background="@drawable/bg_settings_popup"
+        android:elevation="12dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomMenu"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/btnServicesOption"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="Services"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnShops"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="Shops"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnVeterinarians"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="Veterinarians"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

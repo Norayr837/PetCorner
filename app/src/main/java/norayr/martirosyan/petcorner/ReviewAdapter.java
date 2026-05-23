@@ -66,7 +66,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.VH> {
             holder.tvDate.setText("");
         }
 
-        holder.imgProfile.setImageResource(android.R.drawable.sym_def_app_icon);
+        holder.imgProfile.setImageResource(R.drawable.ic_launcher_foreground);
 
         if (r.userId != null) {
             FirebaseDatabase.getInstance()
@@ -108,7 +108,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.VH> {
 
                 String title = item.getTitle().toString();
 
-                // ================= DELETE =================
+
                 if (title.equals("Delete review")) {
 
                     new AlertDialog.Builder(v.getContext())
@@ -125,7 +125,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.VH> {
                             .show();
                 }
 
-                // ================= EDIT =================
+
                 if (title.equals("Edit review")) {
 
                     Context context = v.getContext();
@@ -149,7 +149,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.VH> {
 
                     rating.setLayoutParams(params);
 
-// ✅ ДОБАВЬ ЭТО:
+
                     layout.addView(editText);
                     layout.addView(rating);
 

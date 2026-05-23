@@ -84,7 +84,7 @@ public class AddNotesActivity extends AppCompatActivity {
             return;
         }
 
-        // ❗ защита: если время уже прошло
+
         if (selectedTimeMillis <= System.currentTimeMillis()) {
             Toast.makeText(this, "Choose future time", Toast.LENGTH_SHORT).show();
             return;

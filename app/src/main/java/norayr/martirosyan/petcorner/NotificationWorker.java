@@ -26,12 +26,12 @@ public class NotificationWorker extends Worker {
             String text = getInputData().getString("text");
             String noteId = getInputData().getString("noteId");
 
-            // 🔒 защита от null
+
             if (title == null) title = "Reminder";
             if (text == null) text = "";
             if (noteId == null) noteId = "0";
 
-            // ❌ если вообще пусто — не делаем уведомление
+
             if (title.trim().isEmpty() && text.trim().isEmpty()) {
                 Log.d("WORKER_DEBUG", "Empty notification data");
                 return Result.failure();
