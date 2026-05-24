@@ -31,10 +31,10 @@ public class ServicesActivity extends AppCompatActivity {
     private ImageButton btnFilter;
     private SearchView searchView;
 
-    // bottom nav
+
     private LinearLayout btnServices, btnProfile, btnForum;
 
-    // dropdown
+
     private LinearLayout dropdownMenu;
     private Button btnServicesOption, btnShops, btnVeterinarians;
 
@@ -45,11 +45,11 @@ public class ServicesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_services);
 
-        // ===== TYPE =====
+
         String typeFromIntent = getIntent().getStringExtra("type");
         if (typeFromIntent != null) currentType = typeFromIntent;
 
-        // ===== VIEWS =====
+
         recyclerView = findViewById(R.id.servicesRecycler);
         btnAddService = findViewById(R.id.btnAddService);
         btnSearch = findViewById(R.id.btnSearch);
@@ -74,12 +74,12 @@ public class ServicesActivity extends AppCompatActivity {
 
         loadServices();
 
-        // ================= BOTTOM NAV =================
+
 
         setActiveTab(btnServices);
 
         btnServices.setOnClickListener(v -> {
-            // уже тут → ничего не делаем
+
         });
 
         btnProfile.setOnClickListener(v -> {
@@ -94,7 +94,7 @@ public class ServicesActivity extends AppCompatActivity {
             }
         });
 
-        // ================= DROPDOWN =================
+
 
         btnServices.setOnClickListener(v ->
                 dropdownMenu.setVisibility(
@@ -114,7 +114,7 @@ public class ServicesActivity extends AppCompatActivity {
             startActivity(new Intent(this, VeterinariansActivity.class));
         });
 
-        // ================= SEARCH =================
+
 
         btnSearch.setOnClickListener(v -> {
             searchView.setVisibility(
@@ -132,7 +132,7 @@ public class ServicesActivity extends AppCompatActivity {
             }
         });
 
-        // ================= FILTER =================
+
 
         btnFilter.setOnClickListener(v -> {
 
@@ -155,25 +155,25 @@ public class ServicesActivity extends AppCompatActivity {
             popup.show();
         });
 
-        // ================= ADD =================
+
 
         btnAddService.setOnClickListener(v ->
                 startActivity(new Intent(this, AddServiceActivity.class))
         );
 
-        // ================= BACK BLOCK =================
+
 
         getOnBackPressedDispatcher().addCallback(this,
                 new OnBackPressedCallback(true) {
                     @Override
                     public void handleOnBackPressed() {
-                        finishAffinity(); // ❌ не возвращает назад в stack
+                        finishAffinity();
                     }
                 }
         );
     }
 
-    // ================= ACTIVE TAB =================
+
 
     private void setActiveTab(LinearLayout active) {
 
@@ -188,7 +188,7 @@ public class ServicesActivity extends AppCompatActivity {
         return getClass().getSimpleName().equals(activityName);
     }
 
-    // ================= DATA =================
+
 
     private void loadServices() {
 
@@ -248,11 +248,11 @@ public class ServicesActivity extends AppCompatActivity {
                 });
     }
 
-    // ================= FILTER =================
+
 
     private void filter(String text) {
 
-        if (adapter == null) return; // 🔥 FIX
+        if (adapter == null) return;
 
         filteredList.clear();
 

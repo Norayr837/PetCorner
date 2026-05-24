@@ -18,7 +18,7 @@ public class AddNotesActivity extends AppCompatActivity {
     EditText etTitle, etText;
     Button btnDate, btnTime, btnConfirm;
 
-    Calendar calendar = Calendar.getInstance(); // 🔥 ОДИН календарь
+    Calendar calendar = Calendar.getInstance();
 
     long selectedTimeMillis = 0;
 
@@ -105,7 +105,7 @@ public class AddNotesActivity extends AppCompatActivity {
 
         ref.child(id).setValue(note);
 
-        // 🔥 ВОТ ЭТО ТЕПЕРЬ БУДЕТ РАБОТАТЬ
+
         ReminderWorkerHelper.setReminder(this, note);
 
         Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();

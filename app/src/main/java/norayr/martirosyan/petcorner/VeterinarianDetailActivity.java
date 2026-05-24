@@ -247,19 +247,19 @@ public class VeterinarianDetailActivity extends AppCompatActivity
             String number = raw.replaceAll("[^0-9+]", "");
             String cleanNumber = number.replace("+", "");
 
-            // 📞 звонок
+
             Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
             phoneIntent.setData(Uri.parse("tel:" + number));
 
-            // 💬 WhatsApp
+
             Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
             whatsappIntent.setData(Uri.parse("https://wa.me/" + cleanNumber));
 
-            // 🟣 Viber
+
             Intent viberIntent = new Intent(Intent.ACTION_VIEW);
             viberIntent.setData(Uri.parse("viber://chat?number=" + cleanNumber));
 
-            // ✈️ Telegram
+
             Intent telegramIntent = new Intent(Intent.ACTION_VIEW);
 
             if (number.startsWith("+")) {
@@ -393,7 +393,7 @@ public class VeterinarianDetailActivity extends AppCompatActivity
         String text = etReview.getText().toString().trim();
         float rating = ratingBar.getRating();
 
-        // ❗ базовые проверки
+
         if (user == null) {
             Toast.makeText(this, "You need to login", Toast.LENGTH_SHORT).show();
             return;
@@ -408,7 +408,7 @@ public class VeterinarianDetailActivity extends AppCompatActivity
             return;
         }
 
-        // ❗ запрет владельцу
+
         if (vetOwnerId != null && vetOwnerId.equals(user.getUid())) {
             Toast.makeText(this, "You cannot review your own profile", Toast.LENGTH_SHORT).show();
             return;

@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-            <!-- 3 ТОЧКИ -->
+
             <ImageView
                 android:id="@+id/btnMenu"
                 android:layout_width="26dp"
@@ -34,7 +34,7 @@
                 android:focusable="true"
                 android:src="@android:drawable/ic_menu_more" />
 
-            <!-- TITLE -->
+
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                 android:textColor="#111111"
                 android:layout_toStartOf="@id/btnMenu" />
 
-            <!-- DATE + TIME -->
+
             <TextView
                 android:id="@+id/tvTime"
                 android:layout_width="match_parent"
@@ -57,7 +57,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_toStartOf="@id/btnMenu" />
 
-            <!-- TEXT -->
+
             <TextView
                 android:id="@+id/tvText"
                 android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                 android:layout_below="@id/tvTime"
                 android:layout_marginTop="10dp" />
 
-            <!-- 🔥 КОНТЕЙНЕР МЕНЮ -->
+
             <LinearLayout
                 android:id="@+id/menuContainer"
                 android:layout_width="180dp"

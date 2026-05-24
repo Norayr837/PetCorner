@@ -6,9 +6,9 @@ public class ChatMessage {
     public String username;
     public String message;
     public long timestamp;
-    public String profileImage; // ссылка на фото
+    public String profileImage;
 
-    // Пустой конструктор ОБЯЗАТЕЛЕН для Firebase
+
     public ChatMessage() {
     }
 

@@ -23,7 +23,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
     private List<Service> serviceList;
     private boolean isAdmin;
 
-    // ✅ CALLBACKS (ВОТ ЭТО ТЫ ХОТЕЛ)
+
     public interface OnApproveClick {
         void onApprove(Service service);
     }
@@ -38,7 +38,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
     private Map<String, ValueEventListener> likeListeners = new HashMap<>();
     private Map<String, ValueEventListener> ratingListeners = new HashMap<>();
 
-    // ===================== CONSTRUCTORS =====================
+
 
     public ServiceAdapter(List<Service> serviceList) {
         this.serviceList = serviceList;
@@ -50,7 +50,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
         this.isAdmin = isAdmin;
     }
 
-    // 🔥 ЭТОТ КОНСТРУКТОР ТЕБЕ НУЖЕН
+
     public ServiceAdapter(List<Service> serviceList,
                           boolean isAdmin,
                           OnApproveClick approveClick,
@@ -62,7 +62,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
         this.deleteClick = deleteClick;
     }
 
-    // ===================== VIEW =====================
+
 
     @Override
     public ServiceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -90,7 +90,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
             holder.serviceImage.setImageResource(R.drawable.ic_launcher_background);
         }
 
-        // ================= ADMIN UI =================
+
         if (isAdmin) {
             holder.btnApprove.setVisibility(View.VISIBLE);
             holder.btnDelete.setVisibility(View.VISIBLE);
@@ -99,7 +99,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
             holder.btnDelete.setVisibility(View.GONE);
         }
 
-        // ================= LIKE SYSTEM =================
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = user != null ? user.getUid() : null;
 
@@ -150,7 +150,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
             });
         });
 
-        // ================= ADMIN ACTIONS (CALLBACKS) =================
+
         if (isAdmin) {
 
             holder.btnApprove.setOnClickListener(v -> {
@@ -166,7 +166,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
             });
         }
 
-        // ================= DETAILS =================
+
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), ServiceDetailActivity.class);
 
@@ -181,7 +181,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
             v.getContext().startActivity(intent);
         });
 
-        // ================= RATING =================
+
         DatabaseReference ratingRef = FirebaseDatabase.getInstance()
                 .getReference("service_reviews")
                 .child(service.id);
@@ -224,7 +224,6 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
         return serviceList != null ? serviceList.size() : 0;
     }
 
-    // ================= VIEW HOLDER =================
 
     static class ServiceViewHolder extends RecyclerView.ViewHolder {
 

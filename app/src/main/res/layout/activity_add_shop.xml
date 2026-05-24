@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F5F5F5">
 
-    <!-- Верхняя панель -->
+
     <View
         android:id="@+id/topBar"
         android:layout_width="0dp"
@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="20dp"/>
 
-    <!-- Контент -->
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -44,7 +44,7 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- Название -->
+
             <EditText
                 android:id="@+id/etShopName"
                 android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                 android:padding="15dp"
                 android:layout_marginBottom="15dp"/>
 
-            <!-- Владелец -->
+
             <EditText
                 android:id="@+id/etOwnerName"
                 android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                 android:padding="15dp"
                 android:layout_marginBottom="15dp"/>
 
-            <!-- Адрес -->
+
             <EditText
                 android:id="@+id/etShopAddress"
                 android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                 android:padding="15dp"
                 android:layout_marginBottom="15dp"/>
 
-            <!-- Кнопка карты -->
+
             <Button
                 android:id="@+id/btnChooseOnMap"
                 android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                 android:backgroundTint="#4CAF50"
                 android:layout_marginBottom="15dp"/>
 
-            <!-- Телефон -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
@@ -113,7 +113,8 @@
 
             </LinearLayout>
 
-            <!-- Описание -->
+
+
             <EditText
                 android:id="@+id/etShopDescription"
                 android:layout_width="match_parent"
@@ -124,7 +125,8 @@
                 android:padding="15dp"
                 android:layout_marginBottom="20dp"/>
 
-            <!-- Фото -->
+
+
             <ImageView
                 android:id="@+id/imgShopPhoto"
                 android:layout_width="match_parent"
@@ -134,7 +136,7 @@
                 android:src="@android:drawable/ic_menu_camera"
                 android:layout_marginBottom="15dp"/>
 
-            <!-- Кнопка загрузки -->
+
             <Button
                 android:id="@+id/btnUploadShopPhoto"
                 android:layout_width="match_parent"
@@ -144,7 +146,7 @@
                 android:backgroundTint="#4CAF50"
                 android:layout_marginBottom="15dp"/>
 
-            <!-- Кнопка подтверждения -->
+
             <Button
                 android:id="@+id/btnConfirmShop"
                 android:layout_width="match_parent"

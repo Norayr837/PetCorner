@@ -35,7 +35,7 @@ public class FavoritesActivity extends AppCompatActivity {
         btnShops.setOnClickListener(v -> loadFavorites("shops"));
         btnVets.setOnClickListener(v -> loadFavorites("veterinarians"));
 
-        // по умолчанию
+
         loadFavorites("services");
     }
 

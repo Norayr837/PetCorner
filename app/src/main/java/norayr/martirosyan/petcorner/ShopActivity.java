@@ -66,10 +66,10 @@ public class ShopActivity extends AppCompatActivity {
 
         loadShops();
 
-        // 🔥 ACTIVE TAB
+
         setActiveTab(btnServices);
 
-        // ================= ANNOUNCEMENTS MENU =================
+
         btnServices.setOnClickListener(v -> {
             dropdownMenu.setVisibility(
                     dropdownMenu.getVisibility() == View.GONE ? View.VISIBLE : View.GONE
@@ -81,14 +81,14 @@ public class ShopActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btnShops).setOnClickListener(v -> {
-            // уже в Shops → ничего не делаем
+
         });
 
         findViewById(R.id.btnVeterinarians).setOnClickListener(v -> {
             startActivity(new Intent(this, VeterinariansActivity.class));
         });
 
-        // ================= NAV =================
+
         btnProfile.setOnClickListener(v ->
                 startActivity(new Intent(this, ProfileActivity.class))
         );
@@ -97,7 +97,7 @@ public class ShopActivity extends AppCompatActivity {
                 startActivity(new Intent(this, ForumActivity.class))
         );
 
-        // ================= SEARCH =================
+
         btnSearch.setOnClickListener(v ->
                 searchView.setVisibility(
                         searchView.getVisibility() == View.GONE ? View.VISIBLE : View.GONE
@@ -114,7 +114,7 @@ public class ShopActivity extends AppCompatActivity {
             }
         });
 
-        // ================= FILTER =================
+
         btnFilter.setOnClickListener(v -> {
 
             PopupMenu popup = new PopupMenu(this, btnFilter);
@@ -137,23 +137,23 @@ public class ShopActivity extends AppCompatActivity {
             popup.show();
         });
 
-        // ================= ADD =================
+
         btnAdd.setOnClickListener(v ->
                 startActivity(new Intent(this, AddShopActivity.class))
         );
 
-        // ================= BACK BLOCK =================
+
         getOnBackPressedDispatcher().addCallback(this,
                 new OnBackPressedCallback(true) {
                     @Override
                     public void handleOnBackPressed() {
-                        // блок назад
+
                     }
                 }
         );
     }
 
-    // ================= ACTIVE TAB =================
+
     private void setActiveTab(LinearLayout active) {
 
         btnServices.setBackgroundResource(R.drawable.circle_button);
@@ -163,7 +163,7 @@ public class ShopActivity extends AppCompatActivity {
         active.setBackgroundResource(R.drawable.circle_button_active);
     }
 
-    // ================= LOAD =================
+
     private void loadShops() {
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -217,7 +217,7 @@ public class ShopActivity extends AppCompatActivity {
                 });
     }
 
-    // ================= FILTER =================
+
     private void filter(String text) {
 
         filteredList.clear();
@@ -256,13 +256,13 @@ public class ShopActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        // если меню открыто — просто закрываем
+
         if (dropdownMenu.getVisibility() == View.VISIBLE) {
             dropdownMenu.setVisibility(View.GONE);
             return;
         }
 
-        // переход в профиль
+
         startActivity(new Intent(this, ProfileActivity.class));
         finish();
     }

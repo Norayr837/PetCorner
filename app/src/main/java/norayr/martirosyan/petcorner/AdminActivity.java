@@ -28,7 +28,7 @@ public class AdminActivity extends AppCompatActivity {
     private DatabaseReference shopsRef;
     private DatabaseReference vetsRef;
 
-    // 🔥 UI
+
     private ImageButton btnSettings;
     private LinearLayout settingsMenu;
     private TextView btnApproved;
@@ -61,7 +61,7 @@ public class AdminActivity extends AppCompatActivity {
 
         loadPending();
 
-        // ===== SETTINGS MENU =====
+
 
         settingsMenu.setVisibility(View.GONE);
 
@@ -78,7 +78,7 @@ public class AdminActivity extends AppCompatActivity {
             settingsMenu.setVisibility(View.GONE);
         });
 
-        // 🔥 Закрытие меню при клике вне его
+
         findViewById(android.R.id.content).setOnTouchListener((v, event) -> {
             if (settingsMenu.getVisibility() == View.VISIBLE) {
                 settingsMenu.setVisibility(View.GONE);
@@ -86,11 +86,11 @@ public class AdminActivity extends AppCompatActivity {
             return false;
         });
 
-        // 🔥 Чтобы клики внутри меню НЕ закрывали его
+
         settingsMenu.setOnTouchListener((v, event) -> true);
     }
 
-    // ================= LOAD =================
+
     private void loadPending() {
 
         FirebaseDatabase.getInstance().getReference()
@@ -161,7 +161,7 @@ public class AdminActivity extends AppCompatActivity {
                 });
     }
 
-    // ================= APPROVE =================
+
     private void onApprove(Service item) {
 
         servicesRef.child(item.id).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -195,7 +195,7 @@ public class AdminActivity extends AppCompatActivity {
         });
     }
 
-    // ================= DELETE =================
+
     private void onDelete(Service item) {
 
         servicesRef.child(item.id).addListenerForSingleValueEvent(new ValueEventListener() {

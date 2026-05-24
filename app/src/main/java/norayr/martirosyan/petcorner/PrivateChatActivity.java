@@ -82,7 +82,7 @@ public class PrivateChatActivity extends AppCompatActivity {
         });
     }
 
-    // ===================== USER INFO =====================
+
     private void loadUserInfo() {
 
         chatRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -132,7 +132,7 @@ public class PrivateChatActivity extends AppCompatActivity {
         });
     }
 
-    // ===================== LOAD MESSAGES =====================
+
     private void loadMessages() {
 
         chatRef.child("messages")

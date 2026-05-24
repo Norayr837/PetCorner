@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- 🟢 GREEN TOP BAR -->
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -16,7 +16,7 @@
         android:textSize="28sp"
         android:textStyle="bold" />
 
-    <!-- 🔥 BUTTONS -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             android:layout_margin="0sp"/>
     </LinearLayout>
 
-    <!-- 🔽 THIS WAS MISSING -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesRecyclerView"
         android:layout_width="match_parent"

@@ -65,7 +65,7 @@ public class ChangeUsernameActivity extends AppCompatActivity {
 
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "Username updated", Toast.LENGTH_SHORT).show();
-                        finish(); // возвращаемся в Profile
+                        finish();
                     } else {
                         Toast.makeText(this,
                                 "Error: " + task.getException().getMessage(),

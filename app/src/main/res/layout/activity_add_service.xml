@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="20dp"/>
 
-    <!-- Контент -->
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -44,7 +44,7 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- Имя -->
+
             <EditText
                 android:id="@+id/etNameSurname"
                 android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                 android:padding="15dp"
                 android:layout_marginBottom="15dp"/>
 
-            <!-- Компания -->
+
             <EditText
                 android:id="@+id/etCompanyName"
                 android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                 android:padding="15dp"
                 android:layout_marginBottom="15dp"/>
 
-            <!-- Адрес -->
+
             <EditText
                 android:id="@+id/etAddress"
                 android:layout_width="match_parent"
@@ -82,14 +82,14 @@
                 android:textColor="#FFFFFF"
                 android:backgroundTint="#4CAF50"/>
 
-            <!-- 🔥 БЛОК ТЕЛЕФОНА -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:orientation="horizontal"
                 android:layout_marginBottom="15dp">
 
-                <!-- Код страны -->
+
                 <com.hbb20.CountryCodePicker
                     android:id="@+id/ccpService"
                     android:layout_marginTop="12dp"
@@ -99,7 +99,7 @@
                     app:ccp_defaultNameCode="AM"
                     app:ccp_autoDetectCountry="true"/>
 
-                <!-- Номер -->
+
                 <EditText
                     android:id="@+id/etPhone"
                     android:layout_width="0dp"
@@ -113,7 +113,7 @@
 
             </LinearLayout>
 
-            <!-- Описание -->
+
             <EditText
                 android:id="@+id/etDescription"
                 android:layout_width="match_parent"
@@ -124,7 +124,7 @@
                 android:padding="15dp"
                 android:layout_marginBottom="20dp"/>
 
-            <!-- Фото -->
+
             <ImageView
                 android:id="@+id/imgServicePhoto"
                 android:layout_width="match_parent"
@@ -134,7 +134,7 @@
                 android:src="@android:drawable/ic_menu_camera"
                 android:layout_marginBottom="15dp"/>
 
-            <!-- Кнопки -->
+
             <Button
                 android:id="@+id/btnUploadPhoto"
                 android:layout_width="match_parent"

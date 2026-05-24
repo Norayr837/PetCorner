@@ -1,60 +1,85 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:paddingTop="120dp"
-    android:background="#4CAF50">
+    android:background="#4CAF50"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome back!"
-        android:textSize="36sp"
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="20dp"/>
-
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:hint="Gmail"
-        android:inputType="textEmailAddress"
-        android:padding="10dp"
-        android:background="@drawable/rounded_edittext"
-        android:layout_marginBottom="20dp"/>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/rounded_edittext"
-        android:layout_marginBottom="30dp">
+        android:orientation="vertical"
+        android:padding="25dp"
+        android:background="@drawable/rounded_white_card"
+        android:elevation="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome back!"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#4CAF50"
+            android:layout_gravity="center"
+            android:layout_marginBottom="25dp"/>
+
 
         <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="0dp"
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:background="@android:color/transparent"/>
+            android:hint="Gmail"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="15dp"
 
-        <ImageButton
-            android:id="@+id/btnEye"
-            android:layout_width="45dp"
-            android:layout_height="match_parent"
-            android:src="@android:drawable/ic_menu_view"
-            android:background="@android:color/transparent"/>
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="10dp"
+            android:drawableTint="#9E9E9E"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="25dp">
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:background="@android:color/transparent"
+
+                android:drawableStart="@drawable/ic_lock"
+                android:drawablePadding="10dp"
+                android:drawableTint="#9E9E9E"/>
+
+            <ImageButton
+                android:id="@+id/btnEye"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/ic_menu_view"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Log In"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50"
+            android:textSize="18sp"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="250dp"
-        android:layout_height="45dp"
-        android:text="Log In"
-        android:textColor="#4CAF50"
-        android:backgroundTint="#FFFFFF"
-        android:textSize="18sp"/>
 </LinearLayout>

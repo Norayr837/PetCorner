@@ -53,9 +53,7 @@
         <activity
             android:name=".PersonalInformation"
             android:exported="false" />
-        <activity
-            android:name=".LanguagesActivity"
-            android:exported="false" />
+
         <activity
             android:name=".AboutActivity"
             android:exported="false" />

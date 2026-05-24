@@ -58,7 +58,7 @@
                 android:layout_marginStart="8dp" />
         </LinearLayout>
 
-        <!-- 3 DOTS MENU -->
+
         <ImageButton
             android:id="@+id/btnMenu"
             android:layout_width="32dp"
@@ -68,7 +68,7 @@
             android:visibility="gone"/>
     </LinearLayout>
 
-    <!-- RATING -->
+
     <RatingBar
         android:id="@+id/ratingBarReview"
         android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
         android:scaleY="0.8"
         android:layout_marginTop="4dp"/>
 
-    <!-- REVIEW TEXT -->
+
     <TextView
         android:id="@+id/tvReviewText"
         android:layout_width="match_parent"

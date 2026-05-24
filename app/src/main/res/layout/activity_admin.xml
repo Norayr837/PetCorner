@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- ОСНОВНОЙ КОНТЕНТ -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- 🟢 TOP BAR -->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -26,7 +26,7 @@
                 android:textStyle="bold"
                 android:layout_centerVertical="true" />
 
-            <!-- ⚙️ SETTINGS BUTTON -->
+
             <ImageButton
                 android:id="@+id/btnSettings"
                 android:layout_width="40dp"
@@ -39,7 +39,7 @@
 
         </RelativeLayout>
 
-        <!-- 📋 LIST -->
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerPending"
             android:layout_width="match_parent"
@@ -47,7 +47,7 @@
 
     </LinearLayout>
 
-    <!-- 🔥 DROPDOWN (ПОВЕРХ ВСЕГО) -->
+
     <LinearLayout
         android:id="@+id/settingsMenu"
         android:layout_width="200dp"

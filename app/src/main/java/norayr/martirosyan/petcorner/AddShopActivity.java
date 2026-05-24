@@ -66,7 +66,7 @@ public class AddShopActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance()
                 .getReference("shops");
 
-        // ================= EDIT MODE =================
+
         Intent intent = getIntent();
         editMode = intent.getBooleanExtra("editMode", false);
 
@@ -103,7 +103,7 @@ public class AddShopActivity extends AppCompatActivity {
         });
     }
 
-    // ================= CREATE =================
+
     private void postShop() {
 
         String name = etName.getText().toString().trim();
@@ -147,7 +147,7 @@ public class AddShopActivity extends AppCompatActivity {
                         shop.longitude = selectedLng;
                         shop.timestamp = System.currentTimeMillis();
 
-                        // ✅ MODERATION
+
                         shop.status = "pending";
 
                         databaseReference.child(id).setValue(shop)
@@ -176,7 +176,7 @@ public class AddShopActivity extends AppCompatActivity {
                 .dispatch();
     }
 
-    // ================= UPDATE =================
+
     private void updateShop() {
 
         if (shopId == null) return;
@@ -228,7 +228,7 @@ public class AddShopActivity extends AppCompatActivity {
         }
     }
 
-    // ================= PERMISSION =================
+
     private void checkPermissionAndOpenGallery() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

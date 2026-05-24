@@ -11,7 +11,7 @@ public class Service {
     public String imageUrl;
     public String userId;
 
-    public String status; // 👈 ВОТ ЭТО ДОБАВИЛИ
+    public String status;
 
     public double averageRating;
     public double latitude;
@@ -20,7 +20,7 @@ public class Service {
     public long timestamp;
 
     public Service() {
-        // Firebase needs empty constructor
+
     }
 
     public Service(String name, String company, String address,
@@ -35,7 +35,7 @@ public class Service {
         this.imageUrl = imageUrl;
         this.userId = userId;
 
-        this.status = "pending"; // 👈 ВАЖНО
+        this.status = "pending";
 
         this.timestamp = System.currentTimeMillis();
     }

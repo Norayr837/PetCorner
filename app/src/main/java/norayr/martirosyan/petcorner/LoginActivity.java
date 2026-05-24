@@ -34,10 +34,10 @@ public class LoginActivity extends AppCompatActivity {
         EditText etPassword = findViewById(R.id.etPassword);
         Button btnLogin = findViewById(R.id.btnLogin);
 
-        // 👁 добавили глаз
+
         ImageButton btnEye = findViewById(R.id.btnEye);
 
-        // 👁 логика глаза
+
         btnEye.setOnClickListener(v -> {
             if (etPassword.getTransformationMethod() instanceof PasswordTransformationMethod) {
                 etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());

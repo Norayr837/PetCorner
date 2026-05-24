@@ -74,7 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         userId = currentUser.getUid();
 
-        // INIT VIEWS
+
         tvUsername = findViewById(R.id.tvUsername);
         profileImage = findViewById(R.id.profileImage);
         btnGear = findViewById(R.id.btnGear);
@@ -86,7 +86,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         btnAdminPanel = findViewById(R.id.btnAdminPanel);
 
-        // NAV
+
         btnServices = findViewById(R.id.btnServices);
         btnProfile = findViewById(R.id.btnProfile);
         btnForum = findViewById(R.id.btnForum);
@@ -117,7 +117,7 @@ public class ProfileActivity extends AppCompatActivity {
             settingsContainer.setVisibility(View.GONE);
         });
 
-        // ================= DROPDOWN =================
+
         btnServices.setOnClickListener(v -> {
             dropdownMenu.setVisibility(
                     dropdownMenu.getVisibility() == View.GONE ? View.VISIBLE : View.GONE
@@ -136,7 +136,7 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(new Intent(this, VeterinariansActivity.class));
         });
 
-        // ================= OTHER NAV =================
+
 
         btnProfile.setOnClickListener(v -> {
             setActiveTab(btnProfile);
@@ -146,13 +146,13 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(new Intent(this, ForumActivity.class));
         });
 
-        // 🔥 NEW: OPEN CHAT LIST
+
         btnMyChats.setOnClickListener(v -> {
             Intent intent = new Intent(ProfileActivity.this, ChatListActivity.class);
             startActivity(intent);
         });
 
-        // ================= OTHER BUTTONS =================
+
         findViewById(R.id.btnPersonalInfo).setOnClickListener(v ->
                 startActivity(new Intent(this, PersonalInformation.class)));
 
@@ -168,14 +168,14 @@ public class ProfileActivity extends AppCompatActivity {
         findViewById(R.id.btnMyNotes).setOnClickListener(v ->
                 startActivity(new Intent(this, NotesActivity.class)));
 
-        // ================= PROFILE IMAGE =================
+
         profileImage.setOnClickListener(v -> {
             Intent gallery = new Intent(Intent.ACTION_PICK,
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(gallery, PICK_IMAGE);
         });
 
-        // ================= LOAD USERNAME =================
+
         FirebaseDatabase.getInstance()
                 .getReference("users")
                 .child(userId)
@@ -191,7 +191,7 @@ public class ProfileActivity extends AppCompatActivity {
                     public void onCancelled(DatabaseError error) {}
                 });
 
-        // ================= LOAD IMAGE =================
+
         FirebaseDatabase.getInstance()
                 .getReference("users")
                 .child(userId)
@@ -212,7 +212,7 @@ public class ProfileActivity extends AppCompatActivity {
                     public void onCancelled(DatabaseError error) {}
                 });
 
-        // ================= ADMIN CHECK =================
+
         FirebaseDatabase.getInstance()
                 .getReference("users")
                 .child(userId)

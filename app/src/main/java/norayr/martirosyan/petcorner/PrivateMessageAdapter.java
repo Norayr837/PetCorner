@@ -57,17 +57,17 @@ public class PrivateMessageAdapter extends RecyclerView.Adapter<PrivateMessageAd
 
         PrivateMessage msg = list.get(position);
 
-        // RESET STATE (важно для RecyclerView)
+
         holder.actionContainer.setVisibility(View.GONE);
         holder.btnMenu.setVisibility(View.GONE);
 
         holder.tvMessage.setText(msg.text != null ? msg.text : "");
 
-        // RESET AVATAR (важно!)
+
         holder.profileImage.setImageResource(R.drawable.ic_launcher_foreground);
         holder.tvUsername.setText("");
 
-        // TIME
+
         String time = "";
         try {
             time = new SimpleDateFormat("HH:mm", Locale.getDefault())
@@ -86,7 +86,7 @@ public class PrivateMessageAdapter extends RecyclerView.Adapter<PrivateMessageAd
             holder.btnMenu.setVisibility(View.GONE);
         }
 
-        // 🔥 LOAD USER INFO (USERNAME + PROFILE IMAGE)
+
         String senderId = msg.senderId;
 
         if (senderId != null) {
@@ -121,7 +121,7 @@ public class PrivateMessageAdapter extends RecyclerView.Adapter<PrivateMessageAd
                     });
         }
 
-        // MENU TOGGLE
+
         holder.btnMenu.setOnClickListener(v -> {
             holder.actionContainer.setVisibility(
                     holder.actionContainer.getVisibility() == View.VISIBLE
@@ -129,7 +129,7 @@ public class PrivateMessageAdapter extends RecyclerView.Adapter<PrivateMessageAd
             );
         });
 
-        // DELETE
+
         holder.btnDelete.setOnClickListener(v -> {
             FirebaseDatabase.getInstance()
                     .getReference("private_chats")
@@ -139,7 +139,7 @@ public class PrivateMessageAdapter extends RecyclerView.Adapter<PrivateMessageAd
                     .removeValue();
         });
 
-        // EDIT
+
         holder.btnEdit.setOnClickListener(v -> {
 
             EditText input = new EditText(context);

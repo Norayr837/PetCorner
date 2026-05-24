@@ -96,7 +96,7 @@ public class ForumActivity extends AppCompatActivity {
 
         if (dropdownMenu.getVisibility() == View.GONE) {
 
-            dropdownMenu.setVisibility(View.INVISIBLE); // важно для измерения
+            dropdownMenu.setVisibility(View.INVISIBLE);
 
             dropdownMenu.post(() -> {
 

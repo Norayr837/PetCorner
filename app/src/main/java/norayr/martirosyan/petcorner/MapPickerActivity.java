@@ -41,7 +41,7 @@ public class MapPickerActivity extends AppCompatActivity implements OnMapReadyCa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_picker);
 
-        // ✅ Places init safe
+
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), "AIzaSyBwyi4yxocMtZAgiOnd1jB5LUpTMoDcGLs");
         }
@@ -56,7 +56,7 @@ public class MapPickerActivity extends AppCompatActivity implements OnMapReadyCa
 
         searchInput = findViewById(R.id.searchInput);
 
-        // ✅ modern result handler (IMPORTANT FIX)
+
         autocompleteLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
@@ -85,7 +85,7 @@ public class MapPickerActivity extends AppCompatActivity implements OnMapReadyCa
                 }
         );
 
-        // 🔍 search click
+
         searchInput.setOnClickListener(v -> {
 
             List<Place.Field> fields = Arrays.asList(
@@ -103,7 +103,7 @@ public class MapPickerActivity extends AppCompatActivity implements OnMapReadyCa
             autocompleteLauncher.launch(intent);
         });
 
-        // ✅ confirm button
+
         Button btnConfirm = findViewById(R.id.btnConfirmLocation);
 
         btnConfirm.setOnClickListener(v -> {

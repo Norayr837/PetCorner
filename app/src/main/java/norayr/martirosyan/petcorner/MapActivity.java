@@ -38,7 +38,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     private final List<Marker> shopMarkers = new ArrayList<>();
     private final List<Marker> vetMarkers = new ArrayList<>();
 
-    // 🔥 ВАЖНО: чтобы Picasso Target не удалялся
+
     private final List<com.squareup.picasso.Target> targets = new ArrayList<>();
 
     @Override
@@ -118,7 +118,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         ));
     }
 
-    // ================= LOCATION =================
+
     private void enableLocation() {
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
@@ -134,7 +134,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         }
     }
 
-    // ================= MARKER =================
+
     private void buildMarker(String type, String id,
                              String name, String imageUrl,
                              LatLng pos, List<Marker> list) {
@@ -204,7 +204,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 .into(target);
     }
 
-    // ================= LOAD DATA =================
+
     private void loadServices() {
         DatabaseReference ref = FirebaseDatabase.getInstance()
                 .getReference("services");
@@ -277,7 +277,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         });
     }
 
-    // ================= FILTERS =================
+
     private void showAll() {
         setVisible(serviceMarkers, true);
         setVisible(shopMarkers, true);

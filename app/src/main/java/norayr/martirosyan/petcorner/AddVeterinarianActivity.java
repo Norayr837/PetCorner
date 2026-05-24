@@ -66,7 +66,7 @@ public class AddVeterinarianActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance()
                 .getReference("veterinarians");
 
-        // ================= EDIT MODE =================
+
         Intent intent = getIntent();
         editMode = intent.getBooleanExtra("editMode", false);
 
@@ -105,7 +105,7 @@ public class AddVeterinarianActivity extends AppCompatActivity {
         });
     }
 
-    // ================= CREATE =================
+
     private void postVeterinarian() {
 
         String name = etName.getText().toString().trim();
@@ -148,7 +148,7 @@ public class AddVeterinarianActivity extends AppCompatActivity {
                         vet.longitude = selectedLng;
                         vet.timestamp = System.currentTimeMillis();
                         vet.averageRating = 0f;
-                        vet.status = "pending"; // ✅ как в AddServiceActivity
+                        vet.status = "pending";
 
                         databaseReference.child(id).setValue(vet)
                                 .addOnSuccessListener(unused -> {
@@ -167,7 +167,7 @@ public class AddVeterinarianActivity extends AppCompatActivity {
                 .dispatch();
     }
 
-    // ================= UPDATE =================
+
     private void updateVeterinarian() {
 
         if (vetId == null) return;
@@ -205,7 +205,7 @@ public class AddVeterinarianActivity extends AppCompatActivity {
         }
     }
 
-    // ================= PERMISSION =================
+
     private void checkPermissionAndOpenGallery() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

@@ -23,7 +23,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
     private List<Shop> shopList;
     private boolean isAdmin;
 
-    // ✅ CALLBACKS
+
     public interface OnApproveClick {
         void onApprove(Shop shop);
     }
@@ -38,7 +38,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
     private Map<String, ValueEventListener> likeListeners = new HashMap<>();
     private Map<String, ValueEventListener> ratingListeners = new HashMap<>();
 
-    // ===================== CONSTRUCTORS =====================
+
 
     public ShopAdapter(List<Shop> shopList) {
         this.shopList = shopList;
@@ -50,7 +50,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         this.isAdmin = isAdmin;
     }
 
-    // 🔥 КОНСТРУКТОР С CALLBACKS
+
     public ShopAdapter(List<Shop> shopList,
                        boolean isAdmin,
                        OnApproveClick approveClick,
@@ -62,7 +62,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         this.deleteClick = deleteClick;
     }
 
-    // ===================== VIEW =====================
+
 
     @Override
     public ShopViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -92,7 +92,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
             holder.shopImage.setImageResource(R.drawable.ic_launcher_background);
         }
 
-        // ================= ADMIN UI =================
+
         if (isAdmin) {
             holder.btnApprove.setVisibility(View.VISIBLE);
             holder.btnDelete.setVisibility(View.VISIBLE);
@@ -101,7 +101,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
             holder.btnDelete.setVisibility(View.GONE);
         }
 
-        // ================= LIKE SYSTEM =================
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = user != null ? user.getUid() : null;
 
@@ -156,7 +156,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
             });
         });
 
-        // ================= ADMIN ACTIONS (CALLBACKS) =================
+
         if (isAdmin) {
 
             holder.btnApprove.setOnClickListener(v -> {
@@ -174,7 +174,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
             });
         }
 
-        // ================= DETAILS =================
+
         holder.itemView.setOnClickListener(v -> {
 
             Intent intent = new Intent(v.getContext(), ShopDetailActivity.class);
@@ -190,7 +190,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
             v.getContext().startActivity(intent);
         });
 
-        // ================= RATING =================
+
         DatabaseReference ratingRef = FirebaseDatabase.getInstance()
                 .getReference("shop_reviews")
                 .child(shop.id);
@@ -236,7 +236,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         return shopList != null ? shopList.size() : 0;
     }
 
-    // ================= VIEW HOLDER =================
+
 
     static class ShopViewHolder extends RecyclerView.ViewHolder {
 

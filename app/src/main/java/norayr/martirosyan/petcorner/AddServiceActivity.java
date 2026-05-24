@@ -66,7 +66,7 @@ public class AddServiceActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance()
                 .getReference("services");
 
-        // ================= EDIT MODE =================
+
         Intent intent = getIntent();
         editMode = intent.getBooleanExtra("editMode", false);
 
@@ -103,7 +103,7 @@ public class AddServiceActivity extends AppCompatActivity {
         });
     }
 
-    // ================= CREATE =================
+
     private void postService() {
 
         String name = etName.getText().toString().trim();
@@ -146,13 +146,13 @@ public class AddServiceActivity extends AppCompatActivity {
                         service.longitude = selectedLng;
                         service.timestamp = System.currentTimeMillis();
 
-                        // ✅ ВАЖНО
+
                         service.status = "pending";
 
                         databaseReference.child(id).setValue(service)
                                 .addOnSuccessListener(unused -> {
 
-                                    // 🔥 ВОТ ЭТО ТЫ ХОТЕЛ
+
                                     Toast.makeText(AddServiceActivity.this,
                                             "Your service will be visible after approval",
                                             Toast.LENGTH_LONG).show();
@@ -169,7 +169,7 @@ public class AddServiceActivity extends AppCompatActivity {
                 .dispatch();
     }
 
-    // ================= UPDATE (PATCH like Vet) =================
+
     private void updateService() {
 
         if (serviceId == null) return;
@@ -213,7 +213,7 @@ public class AddServiceActivity extends AppCompatActivity {
         }
     }
 
-    // ================= PERMISSION =================
+
     private void checkPermissionAndOpenGallery() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

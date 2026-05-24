@@ -8,7 +8,7 @@
     android:background="#FFFFFF"
     android:layout_marginBottom="8dp">
 
-    <!-- PROFILE CARD -->
+
     <androidx.cardview.widget.CardView
         android:id="@+id/profileCard"
         android:layout_width="45dp"
@@ -16,7 +16,7 @@
         app:cardCornerRadius="22.5dp"
         app:cardElevation="0dp">
 
-        <!-- PROFILE IMAGE (ВОТ ЭТО ТЕПЕРЬ ИСПОЛЬЗУЕТСЯ В JAVA) -->
+
         <ImageView
             android:id="@+id/profileImage"
             android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:src="@android:drawable/sym_def_app_icon" />
     </androidx.cardview.widget.CardView>
 
-    <!-- USERNAME -->
+
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
         android:textSize="16sp"
         android:textColor="#000" />
 
-    <!-- TIME -->
+
     <TextView
         android:id="@+id/tvTime"
         android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
         android:textSize="12sp"
         android:textColor="#777" />
 
-    <!-- MESSAGE -->
+
     <TextView
         android:id="@+id/tvMessage"
         android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
         android:textSize="15sp"
         android:textColor="#000" />
 
-    <!-- MENU -->
+
     <ImageView
         android:id="@+id/btnMenu"
         android:layout_width="26dp"
@@ -73,7 +73,7 @@
         android:padding="4dp"
         android:visibility="gone" />
 
-    <!-- ACTIONS -->
+
     <LinearLayout
         android:id="@+id/actionContainer"
         android:layout_width="wrap_content"

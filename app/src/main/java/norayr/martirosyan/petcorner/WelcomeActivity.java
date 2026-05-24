@@ -19,7 +19,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         if (user != null) {
 
-            // 🔥 принудительно проверяем актуальность сессии
+
             user.reload().addOnCompleteListener(task -> {
 
                 if (auth.getCurrentUser() != null) {

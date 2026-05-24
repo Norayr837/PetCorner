@@ -33,9 +33,9 @@ public class ApprovedActivity extends AppCompatActivity {
 
         adapter = new ServiceAdapter(
                 list,
-                true,              // admin mode ON
-                null,              // approve OFF
-                this::onDelete     // delete ON
+                true,
+                null,
+                this::onDelete
         );
 
         recyclerView.setAdapter(adapter);
@@ -48,7 +48,7 @@ public class ApprovedActivity extends AppCompatActivity {
         loadApproved();
     }
 
-    // ================= LOAD APPROVED =================
+
     private void loadApproved() {
 
         rootRef.addValueEventListener(new ValueEventListener() {
@@ -57,7 +57,7 @@ public class ApprovedActivity extends AppCompatActivity {
 
                 list.clear();
 
-                // ================= SERVICES =================
+
                 for (DataSnapshot d : snapshot.child("services").getChildren()) {
 
                     Service s = d.getValue(Service.class);
@@ -69,7 +69,7 @@ public class ApprovedActivity extends AppCompatActivity {
                     list.add(s);
                 }
 
-                // ================= SHOPS =================
+
                 for (DataSnapshot d : snapshot.child("shops").getChildren()) {
 
                     Shop shop = d.getValue(Shop.class);
@@ -93,7 +93,7 @@ public class ApprovedActivity extends AppCompatActivity {
                     list.add(s);
                 }
 
-                // ================= VETERINARIANS =================
+
                 for (DataSnapshot d : snapshot.child("veterinarians").getChildren()) {
 
                     Veterinarian vet = d.getValue(Veterinarian.class);
@@ -125,7 +125,7 @@ public class ApprovedActivity extends AppCompatActivity {
         });
     }
 
-    // ================= DELETE =================
+
     private void onDelete(Service item) {
 
         servicesRef.child(item.id).addListenerForSingleValueEvent(new ValueEventListener() {

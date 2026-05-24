@@ -30,7 +30,7 @@ public class NotesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
 
-        // 🔔 Permission Android 13+
+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
             if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -130,7 +130,7 @@ public class NotesActivity extends AppCompatActivity {
 
                                         note.text = newText;
 
-                                        // 🔥 ALARM UPDATE
+
                                         ReminderWorkerHelper.setReminder(NotesActivity.this, note);
                                     }
                                 })
@@ -202,7 +202,7 @@ public class NotesActivity extends AppCompatActivity {
 
                                     note.timeMillis = newTime[0];
 
-                                    // 🔥 ALARM UPDATE
+
                                     ReminderWorkerHelper.setReminder(NotesActivity.this, note);
                                 })
                                 .setNegativeButton("Cancel", null)

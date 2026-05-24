@@ -11,7 +11,7 @@ public class Veterinarian {
     public String imageUrl;
     public String userId;
 
-    public String status; // 👈 добавлено как в Service
+    public String status;
 
     public double averageRating;
     public double latitude;
@@ -19,7 +19,7 @@ public class Veterinarian {
 
     public long timestamp;
 
-    // Firebase needs empty constructor
+
     public Veterinarian() {}
 
     public Veterinarian(String name,
@@ -38,7 +38,7 @@ public class Veterinarian {
         this.imageUrl = imageUrl;
         this.userId = userId;
 
-        this.status = "pending"; // 👈 по аналогии с Service
+        this.status = "pending";
         this.averageRating = 0f;
         this.timestamp = System.currentTimeMillis();
     }

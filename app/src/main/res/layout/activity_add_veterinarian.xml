@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F5F5F5">
 
-    <!-- Верхняя панель -->
+
     <View
         android:id="@+id/topBar"
         android:layout_width="0dp"
@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="20dp"/>
 
-    <!-- Контент -->
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -44,7 +44,7 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- Имя -->
+
             <EditText
                 android:id="@+id/etVetNameSurname"
                 android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                 android:padding="15dp"
                 android:layout_marginBottom="15dp"/>
 
-            <!-- Клиника -->
+
             <EditText
                 android:id="@+id/etClinicName"
                 android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                 android:padding="15dp"
                 android:layout_marginBottom="15dp"/>
 
-            <!-- Адрес -->
+
             <EditText
                 android:id="@+id/etClinicAddress"
                 android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                 android:padding="15dp"
                 android:layout_marginBottom="15dp"/>
 
-            <!-- КНОПКА КАРТЫ (как в service) -->
+
             <Button
                 android:id="@+id/btnChooseOnMapVet"
                 android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                 android:textColor="#FFFFFF"
                 android:backgroundTint="#4CAF50"/>
 
-            <!-- Телефон -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
@@ -112,7 +112,7 @@
                     android:layout_marginStart="8dp"/>
             </LinearLayout>
 
-            <!-- Биография -->
+
             <EditText
                 android:id="@+id/etBiography"
                 android:layout_width="match_parent"
@@ -123,7 +123,7 @@
                 android:padding="15dp"
                 android:layout_marginBottom="20dp"/>
 
-            <!-- Фото -->
+
             <ImageView
                 android:id="@+id/imgVetPhoto"
                 android:layout_width="match_parent"
@@ -133,7 +133,7 @@
                 android:src="@android:drawable/ic_menu_camera"
                 android:layout_marginBottom="15dp"/>
 
-            <!-- Кнопка фото -->
+
             <Button
                 android:id="@+id/btnUploadVetPhoto"
                 android:layout_width="match_parent"
@@ -143,7 +143,7 @@
                 android:text="Attach Photo"
                 android:textColor="#FFFFFF"/>
 
-            <!-- Confirm -->
+
             <Button
                 android:id="@+id/btnConfirmVet"
                 android:layout_width="match_parent"

@@ -31,10 +31,10 @@ public class VeterinariansActivity extends AppCompatActivity {
     private ImageButton btnFilter;
     private SearchView searchView;
 
-    // bottom nav
+
     private LinearLayout btnServices, btnProfile, btnForum;
 
-    // dropdown
+
     private LinearLayout dropdownMenu;
     private Button btnServicesOption, btnShops, btnVeterinarians;
 
@@ -45,11 +45,11 @@ public class VeterinariansActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_veterinarians);
 
-        // ===== TYPE =====
+
         String type = getIntent().getStringExtra("type");
         if (type != null) currentType = type;
 
-        // ===== VIEWS =====
+
         recyclerView = findViewById(R.id.vetsRecycler);
         btnAdd = findViewById(R.id.btnAddVeterinarian);
         btnSearch = findViewById(R.id.btnSearch);
@@ -74,7 +74,7 @@ public class VeterinariansActivity extends AppCompatActivity {
 
         loadVets();
 
-        // ================= BOTTOM NAV =================
+
 
         setActiveTab(btnServices);
 
@@ -90,7 +90,7 @@ public class VeterinariansActivity extends AppCompatActivity {
             startActivity(new Intent(this, ForumActivity.class));
         });
 
-        // ================= DROPDOWN =================
+
 
         btnServices.setOnClickListener(v ->
                 dropdownMenu.setVisibility(
@@ -107,10 +107,10 @@ public class VeterinariansActivity extends AppCompatActivity {
         });
 
         btnVeterinarians.setOnClickListener(v -> {
-            // ❌ ничего не делаем (ты уже тут)
+
         });
 
-        // ================= SEARCH =================
+
 
         btnSearch.setOnClickListener(v -> {
             searchView.setVisibility(
@@ -128,7 +128,7 @@ public class VeterinariansActivity extends AppCompatActivity {
             }
         });
 
-        // ================= FILTER =================
+
 
         btnFilter.setOnClickListener(v -> {
 
@@ -152,13 +152,13 @@ public class VeterinariansActivity extends AppCompatActivity {
             popup.show();
         });
 
-        // ================= ADD =================
+
 
         btnAdd.setOnClickListener(v ->
                 startActivity(new Intent(this, AddVeterinarianActivity.class))
         );
 
-        // ================= BACK BLOCK =================
+
 
         getOnBackPressedDispatcher().addCallback(this,
                 new OnBackPressedCallback(true) {
@@ -170,7 +170,7 @@ public class VeterinariansActivity extends AppCompatActivity {
         );
     }
 
-    // ================= ACTIVE TAB =================
+
 
     private void setActiveTab(LinearLayout active) {
 
@@ -181,7 +181,7 @@ public class VeterinariansActivity extends AppCompatActivity {
         active.setBackgroundResource(R.drawable.circle_button_active);
     }
 
-    // ================= LOAD =================
+
 
     private void loadVets() {
 
@@ -241,7 +241,7 @@ public class VeterinariansActivity extends AppCompatActivity {
                 });
     }
 
-    // ================= FILTER =================
+
 
     private void filter(String text) {
 
@@ -283,13 +283,13 @@ public class VeterinariansActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        // если меню открыто — просто закрываем
+
         if (dropdownMenu.getVisibility() == View.VISIBLE) {
             dropdownMenu.setVisibility(View.GONE);
             return;
         }
 
-        // переход в профиль
+
         startActivity(new Intent(this, ProfileActivity.class));
         finish();
     }

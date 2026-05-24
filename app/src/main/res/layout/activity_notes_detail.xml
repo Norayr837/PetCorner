@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <!-- ЗЕЛЁНАЯ ПОЛОСКА -->
+
     <View
         android:id="@+id/topBar"
         android:layout_width="0dp"
@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- TITLE НА ПОЛОСКЕ -->
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- ТЕКСТ ЗАМЕТКИ -->
+
 
     <TextView
         android:id="@+id/tvText"

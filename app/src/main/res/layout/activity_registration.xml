@@ -2,99 +2,124 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="50dp"
-    android:gravity="center_horizontal"
-    android:background="#4CAF50">
+    android:background="#4CAF50"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Registration"
-        android:textColor="#FFFFFF"
-        android:textSize="36sp"
-        android:layout_marginBottom="45sp">
-    </TextView>
-
-    <EditText
-        android:id="@+id/etUsername"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:hint="Name Surname"
-        android:padding="10dp"
-        android:textSize="18sp"
-        android:background="@drawable/rounded_edittext"
-        android:layout_marginBottom="20dp"/>
-
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:hint="Gmail"
-        android:padding="10dp"
-        android:textSize="18sp"
-        android:background="@drawable/rounded_edittext"
-        android:layout_marginBottom="20dp"/>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/rounded_edittext"
-        android:layout_marginBottom="20dp">
+        android:orientation="vertical"
+        android:padding="25dp"
+        android:background="@drawable/rounded_white_card"
+        android:elevation="10dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Registration"
+            android:textColor="#4CAF50"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"/>
 
         <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="0dp"
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:background="@android:color/transparent"/>
+            android:hint="Name Surname"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="15dp"
 
-        <ImageButton
-            android:id="@+id/btnEyePassword"
-            android:layout_width="45dp"
-            android:layout_height="match_parent"
-            android:src="@android:drawable/ic_menu_view"
-            android:background="@android:color/transparent"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/rounded_edittext"
-        android:layout_marginBottom="30dp">
+            android:drawableStart="@android:drawable/ic_menu_myplaces"
+            android:drawablePadding="10dp"/>
 
         <EditText
-            android:id="@+id/etPasswordconf"
-            android:layout_width="0dp"
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Confirm your password"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:background="@android:color/transparent"/>
+            android:hint="Gmail"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="15dp"
 
-        <ImageButton
-            android:id="@+id/btnEyeConfirm"
-            android:layout_width="45dp"
-            android:layout_height="match_parent"
-            android:src="@android:drawable/ic_menu_view"
-            android:background="@android:color/transparent"/>
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="10dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="15dp">
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:background="@android:color/transparent"
+
+                android:drawableStart="@drawable/ic_lock"
+                android:drawablePadding="10dp"/>
+
+            <ImageButton
+                android:id="@+id/btnEyePassword"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/ic_menu_view"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="25dp">
+
+            <EditText
+                android:id="@+id/etPasswordconf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Confirm password"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:background="@android:color/transparent"
+
+                android:drawableStart="@drawable/ic_lock"
+                android:drawablePadding="10dp"/>
+
+            <ImageButton
+                android:id="@+id/btnEyeConfirm"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/ic_menu_view"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Sign up"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50"
+            android:textSize="18sp"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="250dp"
-        android:layout_height="45dp"
-        android:text="Sign up"
-        android:textColor="#4CAF50"
-        android:backgroundTint="#FFFFFF"
-        android:textSize="20sp"/>
 </LinearLayout>

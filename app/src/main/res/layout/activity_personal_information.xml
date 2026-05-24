@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".PersonalInformation">
 
-    <!-- TOP BAR -->
+
 
     <View
         android:id="@+id/topBar"
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="20dp"/>
 
-    <!-- USERNAME -->
+
     <TextView
         android:id="@+id/usernameLabel"
         android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvUsername"
         app:layout_constraintStart_toStartOf="@id/tvUsername"/>
 
-    <!-- LINE 1 -->
+
     <View
         android:id="@+id/line1"
         android:layout_width="0dp"
@@ -79,7 +79,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"/>
 
-    <!-- EMAIL -->
+
     <TextView
         android:id="@+id/emailLabel"
         android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
         app:layout_constraintTop_toBottomOf="@id/emailLabel"
         app:layout_constraintStart_toStartOf="@id/emailLabel"/>
 
-    <!-- LINE 2 -->
+
     <View
         android:id="@+id/line2"
         android:layout_width="0dp"
@@ -115,7 +115,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"/>
 
-    <!-- PASSWORD -->
+
     <TextView
         android:id="@+id/passwordLabel"
         android:layout_width="wrap_content"
@@ -149,7 +149,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvPassword"
         app:layout_constraintStart_toStartOf="@id/tvPassword"/>
 
-    <!-- LINE BEFORE ACTIONS -->
+
     <View
         android:id="@+id/lineActions"
         android:layout_width="0dp"
@@ -162,7 +162,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"/>
 
-    <!-- DELETE PROFILE PHOTO -->
+
     <Button
         android:id="@+id/btnDeleteProfilePhoto"
         android:layout_width="0dp"
@@ -178,7 +178,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"/>
 
-    <!-- LOG OUT -->
+
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="0dp"
@@ -194,7 +194,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"/>
 
-    <!-- DELETE ACCOUNT (RED) -->
+
     <Button
         android:id="@+id/btnDeleteAccount"
         android:layout_width="0dp"

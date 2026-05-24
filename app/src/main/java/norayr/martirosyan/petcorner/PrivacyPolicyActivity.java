@@ -20,7 +20,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         btnOk.setOnClickListener(v -> {
             Intent intent = new Intent(PrivacyPolicyActivity.this, ProfileActivity.class);
             startActivity(intent);
-            finish(); // закрывает PrivacyPolicyActivity
+            finish();
         });
     }
 }

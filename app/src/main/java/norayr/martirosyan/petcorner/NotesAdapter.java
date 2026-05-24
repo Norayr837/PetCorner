@@ -78,10 +78,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
         h.time.setText(formatted);
 
-        // открыть detail
+
         h.itemView.setOnClickListener(v -> listener.onClick(note));
 
-        // 3 точки
         h.btnMenu.setOnClickListener(v -> {
             if (h.menuContainer.getVisibility() == View.VISIBLE) {
                 h.menuContainer.setVisibility(View.GONE);
@@ -90,19 +89,19 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             }
         });
 
-        // DELETE
+
         h.btnDelete.setOnClickListener(v -> {
             listener.onDelete(note);
             h.menuContainer.setVisibility(View.GONE);
         });
 
-        // EDIT TEXT
+
         h.btnEditText.setOnClickListener(v -> {
             listener.onEditText(note);
             h.menuContainer.setVisibility(View.GONE);
         });
 
-        // EDIT TIME
+
         h.btnEditTime.setOnClickListener(v -> {
             listener.onEditTime(note);
             h.menuContainer.setVisibility(View.GONE);

@@ -192,7 +192,7 @@
                 android:orientation="vertical"
                 android:layout_margin="10dp">
 
-                <!-- кнопка меню (⋮) -->
+
                 <ImageButton
                     android:id="@+id/btnMoreOptions"
                     android:layout_width="40dp"
@@ -201,7 +201,7 @@
                     android:src="@android:drawable/ic_menu_more"
                     android:background="@android:color/transparent"/>
 
-                <!-- скрытое меню -->
+
                 <LinearLayout
                     android:id="@+id/optionsMenu"
                     android:layout_width="wrap_content"
@@ -233,7 +233,7 @@
 
             </LinearLayout>
 
-            <!-- ОТДЕЛЬНО: Send Message (как было) -->
+
             <Button
                 android:id="@+id/btnSendMessage"
                 android:layout_width="wrap_content"
@@ -337,7 +337,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 📦 DROPDOWN -->
+
     <LinearLayout
         android:id="@+id/dropdownMenu"
         android:layout_width="220dp"

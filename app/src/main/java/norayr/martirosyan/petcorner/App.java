@@ -23,7 +23,7 @@ public class App extends Application {
             MediaManager.init(this, config);
 
         } catch (IllegalStateException e) {
-            // уже инициализирован → просто игнорируем
+
         }
     }
 }

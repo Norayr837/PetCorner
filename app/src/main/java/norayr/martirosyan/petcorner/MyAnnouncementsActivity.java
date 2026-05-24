@@ -46,7 +46,7 @@ public class MyAnnouncementsActivity extends AppCompatActivity {
 
         DatabaseReference ref;
 
-        // 📌 правильные Firebase пути
+
         if (type.equals("service")) {
             ref = FirebaseDatabase.getInstance().getReference("services");
         } else if (type.equals("shop")) {

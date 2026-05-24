@@ -44,7 +44,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             return;
         }
 
-        // 👁 ЛОГИКА ГЛАЗ
+
         btnEyeOld.setOnClickListener(v ->
                 togglePassword(etOldPassword, btnEyeOld));
 
@@ -59,16 +59,16 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     private void togglePassword(EditText editText, ImageButton button) {
         if (editText.getTransformationMethod() instanceof PasswordTransformationMethod) {
-            // показать пароль
+
             editText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             button.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
         } else {
-            // скрыть пароль
+
             editText.setTransformationMethod(PasswordTransformationMethod.getInstance());
             button.setImageResource(android.R.drawable.ic_menu_view);
         }
 
-        // курсор в конец
+
         editText.setSelection(editText.getText().length());
     }
 

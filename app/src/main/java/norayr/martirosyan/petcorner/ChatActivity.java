@@ -30,13 +30,13 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        // ================= UI =================
+
         etMessage = findViewById(R.id.etMessage);
         btnSend = findViewById(R.id.btnSend);
         listView = findViewById(R.id.listView);
         tvCategory = findViewById(R.id.tvCategory);
 
-        // ================= CATEGORY =================
+
         category = getIntent().getStringExtra("category");
 
         if (category == null) category = "";
@@ -65,27 +65,26 @@ public class ChatActivity extends AppCompatActivity {
                 break;
         }
 
-        // ================= HEADER TITLE (FIX) =================
+
         tvCategory.setText(title);
 
-        // ================= FIREBASE =================
+
         chatRef = FirebaseDatabase.getInstance()
                 .getReference("chats")
                 .child(category);
 
-        // ================= LIST =================
+
         messages = new ArrayList<>();
         adapter = new MessageAdapter(this, messages, category);
         listView.setAdapter(adapter);
 
-        // ================= LOAD =================
+
         loadMessages();
 
-        // ================= SEND =================
+
         btnSend.setOnClickListener(v -> sendMessage());
     }
 
-    // ================= LOAD MESSAGES =================
     private void loadMessages() {
 
         chatRef.addValueEventListener(new ValueEventListener() {
@@ -121,7 +120,7 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    // ================= SEND MESSAGE =================
+
     private void sendMessage() {
 
         String text = etMessage.getText().toString().trim();

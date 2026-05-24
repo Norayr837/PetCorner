@@ -25,13 +25,13 @@ public class NotesDetailActivity extends AppCompatActivity {
 
         long tm = getIntent().getLongExtra("time", -1);
 
-        // TITLE
+
         title.setText(t != null && !t.isEmpty() ? t : "No title");
 
-        // TEXT
+
         text.setText(tx != null && !tx.isEmpty() ? tx : "No text");
 
-        // TIME
+
         if (tm > 0) {
 
             String formatted = new SimpleDateFormat(

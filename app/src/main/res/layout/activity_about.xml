@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".AboutActivity">
 
-    <!-- GREEN TOP BAR -->
+
     <View
         android:id="@+id/topBar"
         android:layout_width="0dp"
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- TITLE -->
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- DESCRIPTION -->
+
     <TextView
         android:id="@+id/description"
         android:layout_width="0dp"
@@ -45,7 +45,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- OK BUTTON -->
+
     <Button
         android:id="@+id/btnOk"
         android:layout_width="0dp"
@@ -59,7 +59,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- VERSION -->
+
     <TextView
         android:id="@+id/version"
         android:layout_width="wrap_content"

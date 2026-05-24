@@ -17,14 +17,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- IMAGE -->
+
             <ImageView
                 android:id="@+id/detailImage"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"/>
 
-            <!-- MAIN CARD -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 android:layout_margin="10dp"
                 android:padding="12dp">
 
-                <!-- NAME + CLINIC -->
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                         android:layout_marginStart="6dp"/>
                 </LinearLayout>
 
-                <!-- ADDRESS -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                         android:src="@android:drawable/ic_menu_share"/>
                 </LinearLayout>
 
-                <!-- PHONE -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                         android:src="@android:drawable/ic_menu_share"/>
                 </LinearLayout>
 
-                <!-- DESCRIPTION -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -189,7 +189,7 @@
                 android:orientation="vertical"
                 android:layout_margin="10dp">
 
-                <!-- кнопка меню (⋮) -->
+
                 <ImageButton
                     android:id="@+id/btnMoreOptions"
                     android:layout_width="40dp"
@@ -198,7 +198,7 @@
                     android:src="@android:drawable/ic_menu_more"
                     android:background="@android:color/transparent"/>
 
-                <!-- скрытое меню -->
+
                 <LinearLayout
                     android:id="@+id/optionsMenu"
                     android:layout_width="wrap_content"
@@ -240,7 +240,7 @@
                 android:visibility="gone"
                 android:layout_marginStart="10dp"/>
 
-            <!-- REVIEWS LIST -->
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvReviews"
                 android:layout_width="match_parent"
@@ -332,7 +332,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 📦 DROPDOWN -->
+
     <LinearLayout
         android:id="@+id/dropdownMenu"
         android:layout_width="220dp"

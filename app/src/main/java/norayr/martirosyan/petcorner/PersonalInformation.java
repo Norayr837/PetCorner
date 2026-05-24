@@ -26,7 +26,7 @@ public class PersonalInformation extends AppCompatActivity {
     TextView tvUsername, tvEmail, tvPassword;
     Button btnChangeUsername, btnChangePassword, btnLogout, btnDeleteAccount;
 
-    // ✅ НОВОЕ
+
     Button btnDeleteProfilePhoto;
 
     FirebaseUser user;
@@ -37,9 +37,7 @@ public class PersonalInformation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_information);
 
-        // =====================
-        // INIT VIEWS
-        // =====================
+
         tvUsername = findViewById(R.id.tvUsername);
         tvEmail = findViewById(R.id.tvEmail);
         tvPassword = findViewById(R.id.tvPassword);
@@ -49,12 +47,10 @@ public class PersonalInformation extends AppCompatActivity {
         btnLogout = findViewById(R.id.btnLogout);
         btnDeleteAccount = findViewById(R.id.btnDeleteAccount);
 
-        // ✅ НОВОЕ
+
         btnDeleteProfilePhoto = findViewById(R.id.btnDeleteProfilePhoto);
 
-        // =====================
-        // FIREBASE USER
-        // =====================
+
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user == null) {
@@ -70,21 +66,15 @@ public class PersonalInformation extends AppCompatActivity {
 
         loadUserData();
 
-        // =====================
-        // CHANGE USERNAME
-        // =====================
+
         btnChangeUsername.setOnClickListener(v ->
                 startActivity(new Intent(this, ChangeUsernameActivity.class)));
 
-        // =====================
-        // CHANGE PASSWORD
-        // =====================
+
         btnChangePassword.setOnClickListener(v ->
                 startActivity(new Intent(this, ChangePasswordActivity.class)));
 
-        // =====================
-        // LOGOUT (CONFIRM)
-        // =====================
+
         btnLogout.setOnClickListener(v -> {
 
             new androidx.appcompat.app.AlertDialog.Builder(this)
@@ -102,14 +92,10 @@ public class PersonalInformation extends AppCompatActivity {
                     .show();
         });
 
-        // =====================
-        // DELETE ACCOUNT
-        // =====================
+
         btnDeleteAccount.setOnClickListener(v -> showPasswordDialog());
 
-        // =====================
-        // ✅ DELETE PROFILE PHOTO
-        // =====================
+
         btnDeleteProfilePhoto.setOnClickListener(v -> {
 
             new androidx.appcompat.app.AlertDialog.Builder(this)
@@ -121,9 +107,7 @@ public class PersonalInformation extends AppCompatActivity {
         });
     }
 
-    // =====================
-    // LOAD USER DATA
-    // =====================
+
     private void loadUserData() {
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -143,9 +127,7 @@ public class PersonalInformation extends AppCompatActivity {
         });
     }
 
-    // =====================
-    // DELETE PROFILE PHOTO
-    // =====================
+
     private void deleteProfilePhoto() {
 
         String uid = user.getUid();
@@ -163,9 +145,7 @@ public class PersonalInformation extends AppCompatActivity {
                 );
     }
 
-    // =====================
-    // PASSWORD DIALOG
-    // =====================
+
     private void showPasswordDialog() {
 
         EditText input = new EditText(this);

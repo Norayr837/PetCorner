@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 🗺️ MAP -->
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!-- 🟢 TOP BAR -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -28,7 +28,7 @@
             android:textSize="25sp"
             android:textStyle="bold" />
 
-        <!-- ☰ MENU BUTTON -->
+
         <Button
             android:id="@+id/btnMenu"
             android:layout_width="45dp"
@@ -38,7 +38,7 @@
             android:backgroundTint="#388E3C"/>
     </LinearLayout>
 
-    <!-- 🔘 FILTER PANEL (HIDDEN BY DEFAULT) -->
+
     <LinearLayout
         android:id="@+id/filterPanel"
         android:layout_width="160dp"

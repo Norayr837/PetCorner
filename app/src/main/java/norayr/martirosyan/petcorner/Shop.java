@@ -18,10 +18,10 @@ public class Shop {
 
     public long timestamp;
 
-    // 🔥 MODERATION STATUS (ВАЖНО)
-    public String status; // pending / approved
 
-    // Firebase requires empty constructor
+    public String status;
+
+
     public Shop() {}
 
     public Shop(String name,
@@ -43,7 +43,7 @@ public class Shop {
         this.timestamp = System.currentTimeMillis();
         this.averageRating = 0f;
 
-        // 🔥 ВАЖНО: по умолчанию всегда pending
+
         this.status = "pending";
     }
 }

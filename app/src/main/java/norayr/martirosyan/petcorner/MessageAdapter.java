@@ -53,27 +53,27 @@ public class MessageAdapter extends ArrayAdapter<ChatMessage> {
         Button btnEdit = convertView.findViewById(R.id.btnEdit);
         Button btnDelete = convertView.findViewById(R.id.btnDelete);
 
-        // USERNAME + MESSAGE
+
         tvUsername.setText(msg.username);
         tvMessage.setText(msg.message);
 
-        // TIME
+
         String time = new SimpleDateFormat("HH:mm", Locale.getDefault())
                 .format(new Date(msg.timestamp));
         tvTime.setText(time);
 
-        // PROFILE IMAGE
+
         if (msg.profileImage != null && !msg.profileImage.isEmpty()) {
             Picasso.get().load(msg.profileImage).into(profileImage);
         } else {
             profileImage.setImageResource(R.drawable.ic_launcher_foreground);
         }
 
-        // CURRENT USER
+
         SharedPreferences prefs = context.getSharedPreferences("PetCornerPrefs", Context.MODE_PRIVATE);
         String currentUser = prefs.getString("username", "User");
 
-        // SHOW MENU ONLY OWNER
+
         if (msg.username.equals(currentUser)) {
             btnMenu.setVisibility(View.VISIBLE);
         } else {
@@ -81,7 +81,7 @@ public class MessageAdapter extends ArrayAdapter<ChatMessage> {
             actionContainer.setVisibility(View.GONE);
         }
 
-        // TOGGLE ACTION MENU
+
         btnMenu.setOnClickListener(v -> {
             if (actionContainer.getVisibility() == View.VISIBLE) {
                 actionContainer.setVisibility(View.GONE);
@@ -90,7 +90,7 @@ public class MessageAdapter extends ArrayAdapter<ChatMessage> {
             }
         });
 
-        // EDIT
+
         btnEdit.setOnClickListener(v -> {
 
             EditText editText = new EditText(context);
@@ -118,7 +118,7 @@ public class MessageAdapter extends ArrayAdapter<ChatMessage> {
             actionContainer.setVisibility(View.GONE);
         });
 
-        // DELETE (with confirm)
+
         btnDelete.setOnClickListener(v -> {
 
             new AlertDialog.Builder(context)

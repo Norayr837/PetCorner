@@ -7,7 +7,7 @@
     android:background="#FFFFFF"
     android:layout_marginBottom="8dp">
 
-    <!-- PROFILE -->
+
     <androidx.cardview.widget.CardView
         android:id="@+id/avatarContainer"
         android:layout_width="45dp"
@@ -23,7 +23,7 @@
             android:src="@drawable/ic_launcher_foreground"/>
     </androidx.cardview.widget.CardView>
 
-    <!-- USERNAME -->
+
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
         android:textSize="16sp"
         android:textColor="#000"/>
 
-    <!-- TIME -->
+
     <TextView
         android:id="@+id/tvTime"
         android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
         android:textSize="12sp"
         android:textColor="#777"/>
 
-    <!-- MESSAGE -->
+
     <TextView
         android:id="@+id/tvMessage"
         android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
         android:textSize="15sp"
         android:textColor="#000"/>
 
-    <!-- ⚙️ ШЕСТЕРЁНКА (ПРАВЫЙ ВЕРХНИЙ УГОЛ) -->
+
     <ImageView
         android:id="@+id/btnMenu"
         android:layout_width="26dp"
@@ -71,7 +71,7 @@
         android:padding="4dp"
         android:visibility="gone"/>
 
-    <!-- ACTION MENU -->
+
     <LinearLayout
         android:id="@+id/actionContainer"
         android:layout_width="wrap_content"

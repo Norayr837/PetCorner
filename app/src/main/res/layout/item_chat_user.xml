@@ -8,7 +8,7 @@
     android:gravity="center_vertical"
     android:background="?android:attr/selectableItemBackground">
 
-    <!-- PROFILE IMAGE -->
+
     <androidx.cardview.widget.CardView
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -23,7 +23,7 @@
             android:src="@android:drawable/sym_def_app_icon" />
     </androidx.cardview.widget.CardView>
 
-    <!-- TEXT BLOCK -->
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="0dp"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp">
 
-        <!-- Username -->
+
         <TextView
             android:id="@+id/tvUsername"
             android:text="Username"
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <!-- Last message -->
+
         <TextView
             android:id="@+id/tvLastMessage"
             android:text="Last message..."
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <!-- TIME -->
+
     <TextView
         android:id="@+id/tvTime"
         android:text="12:30"

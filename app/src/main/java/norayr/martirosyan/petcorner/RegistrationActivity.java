@@ -25,7 +25,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText etUsername, etEmail, etPassword, etPasswordConfirm;
     private Button btnSubmit;
 
-    // 👁 добавили
+
     private ImageButton btnEyePassword, btnEyeConfirm;
 
     private static final int ADD_PET_REQUEST = 100;
@@ -43,13 +43,13 @@ public class RegistrationActivity extends AppCompatActivity {
         etPasswordConfirm = findViewById(R.id.etPasswordconf);
         btnSubmit = findViewById(R.id.btnSubmit);
 
-        // 👁 находим кнопки
+
         btnEyePassword = findViewById(R.id.btnEyePassword);
         btnEyeConfirm = findViewById(R.id.btnEyeConfirm);
 
         mAuth = FirebaseAuth.getInstance();
 
-        // 👁 логика глаза для password
+
         btnEyePassword.setOnClickListener(v -> {
             if (etPassword.getTransformationMethod() instanceof PasswordTransformationMethod) {
                 etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -61,7 +61,7 @@ public class RegistrationActivity extends AppCompatActivity {
             etPassword.setSelection(etPassword.getText().length());
         });
 
-        // 👁 логика глаза для confirm
+
         btnEyeConfirm.setOnClickListener(v -> {
             if (etPasswordConfirm.getTransformationMethod() instanceof PasswordTransformationMethod) {
                 etPasswordConfirm.setTransformationMethod(HideReturnsTransformationMethod.getInstance());

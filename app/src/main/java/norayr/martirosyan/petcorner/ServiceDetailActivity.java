@@ -113,7 +113,7 @@ public class ServiceDetailActivity extends AppCompatActivity
         String ph = getIntent().getStringExtra("phone");
         String desc = getIntent().getStringExtra("description");
 
-        // MAP
+
         address.setOnClickListener(v -> {
             Uri uri = Uri.parse("geo:0,0?q=" + Uri.encode(address.getText().toString()));
             startActivity(new Intent(Intent.ACTION_VIEW, uri));
@@ -132,7 +132,7 @@ public class ServiceDetailActivity extends AppCompatActivity
             startActivity(intent);
         });
 
-        // PHONE ACTIONS
+
         phone.setOnClickListener(v -> {
 
             String raw = phone.getText().toString().trim();
@@ -167,11 +167,11 @@ public class ServiceDetailActivity extends AppCompatActivity
             startActivity(chooser);
         });
 
-        // COPY
+
         btnCopyAddress.setOnClickListener(v -> copy(address.getText().toString()));
         btnCopyPhone.setOnClickListener(v -> copy(phone.getText().toString()));
 
-        // EDIT
+
         btnEditService.setOnClickListener(v -> {
             Intent intent = new Intent(this, AddServiceActivity.class);
 
@@ -189,7 +189,7 @@ public class ServiceDetailActivity extends AppCompatActivity
             startActivity(intent);
         });
 
-        // SEND MESSAGE 💬
+
         btnSendMessage.setOnClickListener(v -> {
 
             String currentUserId = FirebaseAuth.getInstance().getUid();
@@ -220,7 +220,7 @@ public class ServiceDetailActivity extends AppCompatActivity
 
                     Intent intent = new Intent(ServiceDetailActivity.this, PrivateChatActivity.class);
                     intent.putExtra("chatId", chatId);
-                    intent.putExtra("receiverId", receiverId); // 🔥 ВОТ ЭТО
+                    intent.putExtra("receiverId", receiverId);
                     startActivity(intent);
                 }
 
@@ -228,7 +228,7 @@ public class ServiceDetailActivity extends AppCompatActivity
                 public void onCancelled(@NonNull DatabaseError error) {}
             });
         });
-        // LOAD DATA
+
         if (serviceId == null) {
 
             name.setText(n);
@@ -372,7 +372,7 @@ public class ServiceDetailActivity extends AppCompatActivity
         reviewContainer = findViewById(R.id.reviewContainer);
 
 
-        // ❗ ВАЖНО: используем поля класса, а не новые переменные
+
         btnMoreOptions = findViewById(R.id.btnMoreOptions);
         optionsMenu = findViewById(R.id.optionsMenu);
 

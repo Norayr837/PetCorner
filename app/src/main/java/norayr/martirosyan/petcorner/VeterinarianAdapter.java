@@ -23,7 +23,7 @@ public class VeterinarianAdapter extends RecyclerView.Adapter<VeterinarianAdapte
     private List<Veterinarian> vetList;
     private boolean isAdmin;
 
-    // ✅ CALLBACKS
+
     public interface OnApproveClick {
         void onApprove(Veterinarian vet);
     }
@@ -38,7 +38,7 @@ public class VeterinarianAdapter extends RecyclerView.Adapter<VeterinarianAdapte
     private Map<String, ValueEventListener> likeListeners = new HashMap<>();
     private Map<String, ValueEventListener> ratingListeners = new HashMap<>();
 
-    // ===================== CONSTRUCTORS =====================
+
 
     public VeterinarianAdapter(List<Veterinarian> vetList) {
         this.vetList = vetList;
@@ -60,7 +60,7 @@ public class VeterinarianAdapter extends RecyclerView.Adapter<VeterinarianAdapte
         this.deleteClick = deleteClick;
     }
 
-    // ===================== VIEW =====================
+
 
     @Override
     public VetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -87,7 +87,7 @@ public class VeterinarianAdapter extends RecyclerView.Adapter<VeterinarianAdapte
             holder.vetImage.setImageResource(R.drawable.ic_launcher_background);
         }
 
-        // ================= ADMIN UI =================
+
         if (isAdmin) {
             holder.btnApprove.setVisibility(View.VISIBLE);
             holder.btnDelete.setVisibility(View.VISIBLE);
@@ -96,7 +96,7 @@ public class VeterinarianAdapter extends RecyclerView.Adapter<VeterinarianAdapte
             holder.btnDelete.setVisibility(View.GONE);
         }
 
-        // ================= LIKE SYSTEM =================
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = user != null ? user.getUid() : null;
 
@@ -146,7 +146,7 @@ public class VeterinarianAdapter extends RecyclerView.Adapter<VeterinarianAdapte
             });
         });
 
-        // ================= ADMIN ACTIONS (CALLBACKS) =================
+
         if (isAdmin) {
             holder.btnApprove.setOnClickListener(v -> {
                 if (approveClick != null) {
@@ -161,7 +161,7 @@ public class VeterinarianAdapter extends RecyclerView.Adapter<VeterinarianAdapte
             });
         }
 
-        // ================= DETAILS =================
+
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), VeterinarianDetailActivity.class);
 
@@ -176,7 +176,7 @@ public class VeterinarianAdapter extends RecyclerView.Adapter<VeterinarianAdapte
             v.getContext().startActivity(intent);
         });
 
-        // ================= RATING =================
+
         DatabaseReference ratingRef = FirebaseDatabase.getInstance()
                 .getReference("vet_reviews")
                 .child(vet.id);
@@ -247,7 +247,7 @@ public class VeterinarianAdapter extends RecyclerView.Adapter<VeterinarianAdapte
         }
     }
 
-    // ================= VIEW HOLDER =================
+
     static class VetViewHolder extends RecyclerView.ViewHolder {
 
         ImageView vetImage;
